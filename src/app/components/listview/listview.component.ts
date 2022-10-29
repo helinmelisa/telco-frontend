@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CategoriesService } from './../../services/categories.service';
 import { Category } from 'src/app/models/category';
@@ -10,7 +10,7 @@ import { Category } from 'src/app/models/category';
   styleUrls: ['./listview.component.css'],
 })
 export class ListviewComponent implements OnInit {
-   // component içerisinde yer alan properties bizim için state oluyor.
+  // component içerisinde yer alan properties bizim için state oluyor.
   // ?: null olabilir demek.
   // !: null olmayacak, bu property'i kullanmadan önce atama işlemini gerçekleştiriceğiz söz vermiş oluyoruz.
   categories!: Category[];
@@ -18,7 +18,9 @@ export class ListviewComponent implements OnInit {
 
   categoryAddForm!: FormGroup;
 
-  categoryIdToDelete: number = 0; // state
+  categoryIdToDelete !:number; // state
+  error!:string;
+  
 
   //Angular IoC (Inversion of Control) Container kullanır.
   //Dependency Injection (Bağımlılık Enjeksiyonu)
@@ -34,12 +36,12 @@ export class ListviewComponent implements OnInit {
 
   createCategoryAddForm() {
     this.categoryAddForm = this.formBuilder.group({
-      name: '',
-      description: '',
+      name: ['', Validators.required],
+      description: ['',[Validators.required, Validators.minLength(10)]],
     });
   }
 
-  getCategories() {
+  getCategories(): void {
     // Object tipi henüz belli olmayan referans tip diyebiliriz. Referans tiplerin en temel sınıfı diyebiliriz.
     this.categoriesService.getCategories().subscribe((response) => {
       this.categories = response;
@@ -49,17 +51,53 @@ export class ListviewComponent implements OnInit {
   changecategoryIdToDelete(event: any) {
     this.categoryIdToDelete = event.target.value;
   }
+  // changecategoryIdToDelete(event: any) {
+  //   this.categoryIdToDelete = event.target.value;
+  // }
 
-  add() {
-    console.log(this.categoryAddForm.value);
-
+  add(): void {
+    if (this.categoryAddForm.invalid) {
+      this.error = 'Form is invalid';
+      return;
+    }
+    if (this.error) this.error = '';
+    
     // let category: Category = {
     //   id: categoryIdToAdd,
     //   name: categoryNameToAdd,
     //   description: categoryDescriptionToAdd,
+    
+    // const {name, description} = this.categoryAddForm.value;
+    // // this.categoryAddForm.value
+    // const category: Category = {
+    //   id: 0,
+    //   // name: name,
+    //   name,
+    //   description,
     // };
     // this.categoriesService.add(category);
+
+    // spread operator ... (ES6)
+    const category: Category = {
+      ...this.categoryAddForm.value,
+    };
+    this.categoriesService.add(category).subscribe({
+      next: (response) => {
+        console.info(`Category(${response.id}) has added.`);
+      },
+      error: (err) => {
+        console.log(err);
+
+        this.error = err.statusText;
+      },
+      complete: () => {
+        if (this.error) this.error = '';
+        this.categoryAddForm.reset();
+        this.getCategories();
+      },
+    });
   }
+
 
   delete() {
     this.categoriesService.delete(this.categoryIdToDelete).subscribe(() => {
