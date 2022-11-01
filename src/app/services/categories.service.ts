@@ -6,7 +6,13 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
+<<<<<<< HEAD
 }) // Attribute
+=======
+})
+
+ // Attribute
+>>>>>>> 4f5a24619d614679c6b7b8666dc234f34d5f8bb9
 export class CategoriesService {
   controllerUrl = `${environment.apiUrl}/categories`;
   // private httpClient: HttpClient;
@@ -36,4 +42,8 @@ export class CategoriesService {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.controllerUrl}/${id}`);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4f5a24619d614679c6b7b8666dc234f34d5f8bb9
