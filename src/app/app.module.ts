@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -11,15 +10,19 @@ import { NgModule } from '@angular/core';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { CreateFakeArrayPipe } from './pipes/create-fake-array.pipe';
 import { SplitPipe } from './pipes/split.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, CalculatorComponent, ListviewComponent, CreateFakeArrayPipe, SplitPipe],
+  declarations: [AppComponent, CalculatorComponent, ListviewComponent, CreateFakeArrayPipe, SplitPipe, LoginComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   exports: [],
   providers: [
@@ -28,25 +31,3 @@ import { SplitPipe } from './pipes/split.pipe';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-=======
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CalculatorComponent } from './components/calculator/calculator.component';
-import { ListviewComponent } from './components/listview/listview.component';
-import { ProductlistComponent } from './components/productlist/productlist.component';
-
-@NgModule({
-  declarations: [AppComponent, CalculatorComponent, ListviewComponent, ProductlistComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  exports: [],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
->>>>>>> 4f5a24619d614679c6b7b8666dc234f34d5f8bb9
