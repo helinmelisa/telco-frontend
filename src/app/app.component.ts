@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 import { LoadingService } from './services/loading.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,16 +12,14 @@ export class AppComponent implements OnInit {
   title = 'telco-frontend12';
   isLoading: boolean = false;
   today: Date = new Date();
+  isUserLoggedIn = false;
 
-  constructor(private loadingService: LoadingService) {}
-  ngOnInit(): void {
+  constructor(
+    private loadingService: LoadingService,
+    private authService: AuthService) {}
+  
+    ngOnInit(): void {
     this.subscribeToLoading();
-  }
-
-  sumOfNumbers(a: number, b: number) {
-    let result = a + b;
-    // console.log(result);
-    return result;
   }
 
   btnClick() {

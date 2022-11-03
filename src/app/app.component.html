@@ -1,4 +1,4 @@
-<h3>{{ "Merhaba Angular" }}</h3>
+<!-- <h3>{{ "Merhaba Angular" }}</h3>
 
 <div class="spinner-container" *ngIf="isLoading">
   <div class="overlay show"></div>
@@ -8,8 +8,7 @@
   </div>
 </div>
 
-<app-listview></app-listview>
-<router-outlet></router-outlet>
+<app-listview></app-listview> -->
 
 <!-- 1-10 arası sayıları listeye yazdır.. -->
 <!-- <ul>
@@ -24,3 +23,17 @@
 <h3>{{ sumOfNumbers(6, 5) }}</h3>
 <button (click)="btnClick()">Tıkla</button>
 <my-calculator></my-calculator> -->
+
+<div id="app" class="d-flex flex-column h-100">
+  <ng-template #loaded>
+    <app-navbar></app-navbar>
+
+    <div class="container flex-grow-1">
+      <div class="mt-5">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <app-footer></app-footer>
+  </ng-template>
+</div>
