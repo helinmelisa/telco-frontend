@@ -1,3 +1,9 @@
+<input [(ngModel)]="searchText" type="text" />
+<ul>
+  <li *ngFor="let item of services | filterService: searchText">
+    {{ item.name }}
+  </li>
+</ul>
 <!-- <div class="row">
     <div class="col-sm-3 mt-2 px-2 p-2 m-1" *ngFor="let service of services">
         <div class="card">
@@ -6,7 +12,7 @@
         </div>
     </div>
 </div> -->
-<div class="card text-center">
+<!-- <div class="card text-center">
     <div class="card-header">
       Services
     </div>
@@ -19,7 +25,7 @@
             Pair 4
           </div>
     </div>
-  </div>
+  </div> -->
 <!-- <div  class="row">
     <ng-template ngFor let-item [ngForOf]="products" >
         <ng-template class="col-sm-3">

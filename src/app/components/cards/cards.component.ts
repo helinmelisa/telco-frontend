@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/models/services'
 
-import { ServiceService } from 'src/app/services/service.service';
+import { ServicesService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'services',
@@ -11,10 +11,12 @@ import { ServiceService } from 'src/app/services/service.service';
 export class CardsComponent implements OnInit {
 
   services!: Services[];
+  searchText: string = '';
+  error: string = '';
 
 
   constructor(
-    private serviceService: ServiceService
+    private serviceService: ServicesService
   ) { }
 
   ngOnInit(): void {
@@ -22,7 +24,7 @@ export class CardsComponent implements OnInit {
   }
 
   getServices(): void {
-    this.serviceService.getServices().subscribe((response) => {
+    this.serviceService.getServices().subscribe((response: Services[]) => {
       // Observer Design Pattern
       this.services = response;
     });

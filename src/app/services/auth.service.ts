@@ -1,18 +1,44 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
+import { LoginDto } from '../models/loginDto';
+import { LoginResponseModel } from '../models/loginResponseModel';
+import { LocalStorageService } from './local-storage.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  controllerUrl = `${environment.apiUrl}/auth/login`;
+  private controllerUrl = `${environment.apiUrl}/auth`;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private localStorage: LocalStorageService,
+    private jwtHelperService: JwtHelperService
+  ) {}
 
-  checkLogin(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.controllerUrl, user);
+  login(loginDto: LoginDto): Observable<LoginResponseModel> {
+    return this.httpClient.post<LoginResponseModel>(
+      `${this.controllerUrl}/login`,
+      loginDto
+    );
+  }
+
+  logout() {
+    this.localStorage.remove('token');
+  }
+
+  get isAuthenticated(): boolean {
+    // varsa süresi geçmişse yine false
+    let token = this.localStorage.get('token');
+    if (!token) return false;
+    if (this.jwtHelperService.isTokenExpired()) return false;
+    return true;
+  }
+
+  get jwtToken(): string | null {
+    return this.localStorage.get('token');
   }
 }
