@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CardsComponent } from './components/cards/cards.component';
+import { ListviewComponent } from './components/listview/listview.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path: 'home', component: HomeComponent},
-  {path:'login',component: LoginComponent}
+  {path:'login',component: LoginComponent},
+  {path: 'services', component: CardsComponent},
+  {path: 'listview', component: ListviewComponent}
 ];
 
 @NgModule({

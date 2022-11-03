@@ -10,7 +10,7 @@ import { CategoriesService } from './../../services/categories.service';
 import { Category } from 'src/app/models/category';
 
 @Component({
-  selector: 'app-listview',
+  selector: 'listview',
   templateUrl: './listview.component.html',
   styleUrls: ['./listview.component.css'],
 })
