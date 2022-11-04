@@ -24,11 +24,13 @@ const routes: Routes = [
       },
       {
         path: 'individualCustomers',
-        component: IndividualCustomersComponent
+        component: IndividualCustomersComponent,
+        canActivate: [LoginGuard]
       },
       {
         path: 'corporateCustomers',
-        component: CorporateCustomersComponent
+        component: CorporateCustomersComponent,
+        canActivate: [LoginGuard]
       }
     ]
   }
