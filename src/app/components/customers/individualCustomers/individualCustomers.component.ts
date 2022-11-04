@@ -19,11 +19,11 @@ export class IndividualCustomersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getIndividualCustomersService();
+    this.getIndividualCustomers();
   }
 
-  getIndividualCustomersService(): void {
-    this.individualCustomersService.getIndividualCustomersService()
+  getIndividualCustomers(): void {
+    this.individualCustomersService.getIndividualCustomers()
     .subscribe((response: IndividualCustomers[]) => {
       this.individualCustomers = response;
     } )

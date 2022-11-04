@@ -23,7 +23,8 @@ import { FilterServicePipe } from './pipes/filter-service.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { CardsComponent } from './components/cards/cards.component';
 import { LoadingComponent } from './pages/loading/loading.component';
-import { IndividualCustomersComponent } from './components/customers/individualCustomers.component';
+import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
+import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { IndividualCustomersComponent } from './components/customers/individualC
     CardsComponent,
     LoginComponent,
     LoadingComponent,
-    IndividualCustomersComponent],
+    IndividualCustomersComponent,
+    CorporateCustomersComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

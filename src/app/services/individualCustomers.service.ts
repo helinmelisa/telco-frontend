@@ -12,7 +12,7 @@ export class IndividualCustomersService {
   private controllerUrl = `${environment.apiUrl}/individualCustomers`;
   constructor(private httpClient: HttpClient) {}
 
-  getIndividualCustomersService(): Observable<IndividualCustomers[]> {
+  getIndividualCustomers(): Observable<IndividualCustomers[]> {
     return this.httpClient.get<IndividualCustomers[]>(this.controllerUrl);
   }
 

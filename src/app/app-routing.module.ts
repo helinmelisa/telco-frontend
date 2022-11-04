@@ -5,7 +5,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginGuard } from './components/guards/login.guard';
 import { ServicesService } from './services/service.service';
-import { IndividualCustomersComponent } from './components/customers/individualCustomers.component';
+import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
+import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'individualCustomers',
         component: IndividualCustomersComponent
+      },
+      {
+        path: 'corporateCustomers',
+        component: CorporateCustomersComponent
       }
     ]
   }
