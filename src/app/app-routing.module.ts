@@ -5,15 +5,27 @@ import { ListviewComponent } from './components/listview/listview.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginGuard } from './components/guards/login.guard';
+import { ServicesService } from './services/service.service';
 
 
 const routes: Routes = [
   {path:'', redirectTo:'home', pathMatch:'full'},
-  {path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
   {path:'login',component: LoginComponent},
-  {path: 'services', component: CardsComponent},
-  {path: 'listview', component: ListviewComponent}
+  {path: 'home', component: HomeComponent, canActivate: [LoginGuard],
+    children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'services',
+        component: CardsComponent
+      }
+    ]
+  }
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterServicePipe } from './pipes/filter-service.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { CardsComponent } from './components/cards/cards.component';
+import { LoadingComponent } from './pages/loading/loading.component';
 
 @NgModule({
   declarations: 
@@ -36,7 +37,8 @@ import { CardsComponent } from './components/cards/cards.component';
     NavbarComponent, 
     FooterComponent, 
     CardsComponent,
-    LoginComponent],
+    LoginComponent,
+    LoadingComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
