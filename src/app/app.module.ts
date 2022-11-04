@@ -23,6 +23,7 @@ import { FilterServicePipe } from './pipes/filter-service.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { CardsComponent } from './components/cards/cards.component';
 import { LoadingComponent } from './pages/loading/loading.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: 
@@ -38,7 +39,8 @@ import { LoadingComponent } from './pages/loading/loading.component';
     FooterComponent, 
     CardsComponent,
     LoginComponent,
-    LoadingComponent],
+    LoadingComponent,
+   UsersComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
