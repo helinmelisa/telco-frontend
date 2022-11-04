@@ -1,25 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Users } from 'src/app/models/users';
+import { IndividualCustomers } from 'src/app/models/individualCustomers';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class UsersService {
+export class IndividualCustomersService {
   private controllerUrl = `${environment.apiUrl}/individualCustomers`;
   constructor(private httpClient: HttpClient) {}
 
-  getUsers(): Observable<Users[]> {
-    return this.httpClient.get<Users[]>(this.controllerUrl);
+  getIndividualCustomersService(): Observable<IndividualCustomers[]> {
+    return this.httpClient.get<IndividualCustomers[]>(this.controllerUrl);
   }
 
-  update(users: Users): Observable<Users> {
-    return this.httpClient.put<Users>(
-      `${this.controllerUrl}/${users.customerId}`,
-      users
+  update(individualCustomers: IndividualCustomers): Observable<IndividualCustomers> {
+    return this.httpClient.put<IndividualCustomers>(
+      `${this.controllerUrl}/${individualCustomers.customerId}`,
+      individualCustomers
     );
   }
 

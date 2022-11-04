@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CardsComponent } from './components/cards/cards.component';
-import { ListviewComponent } from './components/listview/listview.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginGuard } from './components/guards/login.guard';
 import { ServicesService } from './services/service.service';
-import { UsersComponent } from './components/users/users.component';
+import { IndividualCustomersComponent } from './components/customers/individualCustomers.component';
 
 
 const routes: Routes = [
@@ -23,8 +22,8 @@ const routes: Routes = [
         component: CardsComponent
       },
       {
-        path: 'users',
-        component: UsersComponent
+        path: 'individualCustomers',
+        component: IndividualCustomersComponent
       }
     ]
   }
