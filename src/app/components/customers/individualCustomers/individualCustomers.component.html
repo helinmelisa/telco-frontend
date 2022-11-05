@@ -1,5 +1,9 @@
-<div class="list-group">
-  <button  *ngFor="let individualCustomer of individualCustomers" type="button" class="list-group-item list-group-item-action">
-    {{individualCustomer.firstName}} {{individualCustomer.lastName}}
-  </button>
+<div class="row">
+  <div class="col-sm-3 mt-2 px-2 p-2 m-1" *ngFor="let item of individualCustomers">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.firstName }} {{ item.lastName }}</h5>
+          <button (click)="showDetails(item.customerId)" type="button" class="btn btn-primary">Details</button>
+      </div>
+  </div>
 </div>

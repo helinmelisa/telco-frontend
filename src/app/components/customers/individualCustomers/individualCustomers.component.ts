@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IndividualCustomers } from 'src/app/models/individualCustomers';
 import { IndividualCustomersService } from 'src/app/services/individualCustomers.service';
 
@@ -13,8 +14,10 @@ export class IndividualCustomersComponent implements OnInit {
   individualCustomers!: IndividualCustomers[];
   searchText: string = '';
   error: string = '';
+  customerId: any;
 
   constructor(
+    private router: Router,
     private individualCustomersService: IndividualCustomersService
   ) {}
 
@@ -28,6 +31,9 @@ export class IndividualCustomersComponent implements OnInit {
       this.individualCustomers = response;
     } )
   }
-
+ 
+  showDetails(id: number){
+    this.router.navigate(['individualCustomers/details', id])
+  }
 }
 

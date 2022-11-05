@@ -7,6 +7,7 @@ import { LoginGuard } from './components/guards/login.guard';
 import { ServicesService } from './services/service.service';
 import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
+import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
         path: 'corporateCustomers',
         component: CorporateCustomersComponent,
         canActivate: [LoginGuard]
+      },
+      {
+        path: 'individualCustomers/details/:id',
+        component: CustomerDetailComponent
       }
     ]
   }

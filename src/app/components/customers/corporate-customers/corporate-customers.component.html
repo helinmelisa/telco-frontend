@@ -1,5 +1,9 @@
-<div class="list-group">
-    <button  *ngFor="let item of corporateCustomers" type="button" class="list-group-item list-group-item-action">
-      {{item.companyName}} {{item.taxNumber}}
-    </button>
+<div class="row">
+  <div class="col-sm-3 mt-2 px-2 p-2 m-1" *ngFor="let item of corporateCustomers">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.companyName }}</h5>
+          <button type="button" class="btn btn-primary">Detail</button>
+      </div>
   </div>
+</div>

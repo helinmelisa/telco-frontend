@@ -25,6 +25,7 @@ import { CardsComponent } from './components/cards/cards.component';
 import { LoadingComponent } from './pages/loading/loading.component';
 import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
+import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CorporateCustomersComponent } from './components/customers/corporate-cu
     LoginComponent,
     LoadingComponent,
     IndividualCustomersComponent,
-    CorporateCustomersComponent],
+    CorporateCustomersComponent,
+    CustomerDetailComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
