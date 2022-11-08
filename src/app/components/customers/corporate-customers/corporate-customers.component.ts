@@ -30,7 +30,7 @@ export class CorporateCustomersComponent implements OnInit {
   }
 
   showDetails(id: number){
-    this.router.navigate(['home/corporateCustomers/details',  id])
+    this.router.navigate(['/corporateCustomers/details',  id])
   }
 
 }

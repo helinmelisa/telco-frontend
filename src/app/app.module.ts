@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { CalculatorComponent } from './components/calculator/calculator.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ListviewComponent } from './components/listview/listview.component';
 import { NgModule } from '@angular/core';
@@ -27,12 +26,15 @@ import { IndividualCustomersComponent } from './components/customers/individualC
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
 import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
+import { OverlayTitleComponent } from './components/overlay-title/overlay-title.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/app.reducer';
+import { AppStoreState } from './store/app.state';
 
 
 @NgModule({
   declarations: 
   [AppComponent, 
-    CalculatorComponent, 
     FilterServicePipe, 
     ListviewComponent, 
     CreateFakeArrayPipe, 
@@ -47,7 +49,8 @@ import { CorporateCustomersDetailComponent } from './pages/corporate-customer-de
     IndividualCustomersComponent,
     CorporateCustomersComponent,
     CustomerDetailComponent,
-    CorporateCustomersDetailComponent],
+    CorporateCustomersDetailComponent,
+    OverlayTitleComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -67,6 +70,7 @@ import { CorporateCustomersDetailComponent } from './pages/corporate-customer-de
         },
       },
     }),
+    StoreModule.forRoot<AppStoreState>(appReducers),
   ],
   exports: [],
   providers: [

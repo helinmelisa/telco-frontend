@@ -13,13 +13,24 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false;
   today: Date = new Date();
   isUserLoggedIn = false;
+  overlayTitleText: string = '';
+  // tokenUserModel: TokenUserModel | null = null;
+
 
   constructor(
     private loadingService: LoadingService,
     private authService: AuthService) {}
   
     ngOnInit(): void {
-    this.subscribeToLoading();
+      this.subscribeToLoading();
+      this.handleOnLogin();
+      this.setTokenUserModel();
+  }
+
+  setTokenUserModel() {
+    const tokenUserModel = this.authService.tokenUserModel;
+    if (tokenUserModel)
+      this.authService.setTokenUserModelStoreState(tokenUserModel);
   }
 
   btnClick() {
@@ -38,5 +49,20 @@ export class AppComponent implements OnInit {
   }
   stopLoading() {
     this.loadingService.stopLoading();
+  }
+
+  handleOnLogout() {
+    this.overlayTitleText = 'Hoşçakal, tekrar bekleriz...';
+  }
+  handleOnLogoutWithValue(eventValue: string) {
+    this.overlayTitleText = eventValue;
+  }
+  handleOnLogin(): void {
+    //* onLogin event'ine (subject) abone olduk, dolayısıyla her tetiklendiğinde ilgili event fonksiyonu çalışır.
+    this.authService.onLogin.subscribe({
+      next: (eventValue) => {
+        this.overlayTitleText = eventValue;
+      },
+    });
   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalculatorComponent } from './calculator.component';
+import { OverlayTitleComponent } from './overlay-title.component';
 
-describe('CalculatorComponent', () => {
-  let component: CalculatorComponent;
-  let fixture: ComponentFixture<CalculatorComponent>;
+describe('OverlayTitleComponent', () => {
+  let component: OverlayTitleComponent;
+  let fixture: ComponentFixture<OverlayTitleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CalculatorComponent ]
+      declarations: [ OverlayTitleComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CalculatorComponent);
+    fixture = TestBed.createComponent(OverlayTitleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
