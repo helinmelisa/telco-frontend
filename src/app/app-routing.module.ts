@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'corporateCustomers', component:CorporateCustomersComponent, canActivate: [LoginGuard]},
   {path:'individualCustomers/details/:id', component:CustomerDetailComponent},
   {path:'corporateCustomers/details/:id', component:CorporateCustomersDetailComponent},
-  {path:'createCustomer', component:CreateCustomerComponent}
+  {path:'create-customer', component:CreateCustomerComponent}
 ];
 
 

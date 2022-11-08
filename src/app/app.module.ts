@@ -1,6 +1,7 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import {MatSelectModule} from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,6 +32,7 @@ import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/app.reducer';
 import { AppStoreState } from './store/app.state';
 import { CreateCustomerComponent } from './pages/createcustomer/createcustomer.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -59,6 +61,7 @@ import { CreateCustomerComponent } from './pages/createcustomer/createcustomer.c
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatSelectModule,
     ReactiveFormsModule,
     NgbModule,
     RouterModule,
@@ -73,6 +76,9 @@ import { CreateCustomerComponent } from './pages/createcustomer/createcustomer.c
       },
     }),
     StoreModule.forRoot<AppStoreState>(appReducers),
+    StoreDevtoolsModule.instrument({
+      autoPause: false,
+    }),
   ],
   exports: [],
   providers: [

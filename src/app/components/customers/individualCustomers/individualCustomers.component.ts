@@ -37,7 +37,7 @@ export class IndividualCustomersComponent implements OnInit {
   }
 
   goToCreateCustomerPage() {
-    this.router.navigateByUrl('/createCustomer')
+    this.router.navigateByUrl('/create-customer')
   }
 }
 

@@ -1,6 +1,6 @@
 <nav *ngIf="isLogin" class="navbar navbar-expand-lg navbar-light bg-light">
-   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Pair 4</a>
+   <div class="container">
+    <a class="navbar-brand">Pair 4</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
      </button>
@@ -20,7 +20,15 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" routerLinkActive="active">
                <li><a class="dropdown-item nav-link" routerLink="individualCustomers">Individual Customers</a></li>
                <li><a class="dropdown-item nav-link" routerLink="corporateCustomers">Corporate Customers</a></li>
-              </ul>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/create-customer"
+              routerLinkActive="active"
+              >Create Customer</a
+            >
           </li>
       </ul>
       <div *ngIf="isLogin" class="d-flex align-items-center">

@@ -1,4 +1,5 @@
-<h1>User Details</h1>
+<div *ngIf="!!details">
+    <h1>User Details</h1>
 <div class="row">
     <div class="col-sm-3 mt-2 px-2 p-2 m-1">
         <div class="card">
@@ -10,14 +11,15 @@
         </div>
     </div>
 </div>
-<h1>Subscription Details</h1>
-<div class="row">
+</div>
+<!-- <div *ngIf="subscription  && subscription.length>0"> -->
+    <h1>Subscription Details</h1>
+<div class="row" *ngFor="let item of subscription">
     <div class="col-sm-3 mt-2 px-2 p-2 m-1">
         <div class="card">
           <div class="card-body">
-            <!-- <h5 class="card-title">{{ subscription.customerId }}</h5>
-            <h5 class="card-title">{{ subscription.serviceId }} </h5> -->
-            <h5 class="card-title">{{ details.nationalIdentity }}</h5>
+            <h5 class="card-title">{{ item.dateStarted }}</h5>
+            <h5 class="card-title">{{ item.serviceId }} </h5>
         </div>
-    </div>
+  </div>
 </div>
