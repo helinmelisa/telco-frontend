@@ -33,4 +33,8 @@ export class CorporateCustomersComponent implements OnInit {
     this.router.navigate(['/corporateCustomers/details',  id])
   }
 
+  goToCreateCustomerPage() {
+    this.router.navigateByUrl('/createCustomer')
+  }
+
 }

@@ -7,6 +7,7 @@ import { IndividualCustomersComponent } from './components/customers/individualC
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
 import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
+import { CreateCustomerComponent } from './pages/createcustomer/createcustomer.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:'individualCustomers', component:IndividualCustomersComponent, canActivate: [LoginGuard]},
   {path:'corporateCustomers', component:CorporateCustomersComponent, canActivate: [LoginGuard]},
   {path:'individualCustomers/details/:id', component:CustomerDetailComponent},
-  {path:'corporateCustomers/details/:id', component:CorporateCustomersDetailComponent}
+  {path:'corporateCustomers/details/:id', component:CorporateCustomersDetailComponent},
+  {path:'createCustomer', component:CreateCustomerComponent}
 ];
 
 
