@@ -42,18 +42,22 @@ export class CreateCustomerComponent implements OnInit {
   createCorporateCustomerForm() {
     this.corporateCustomerForm = this.formBuilder.group({
       companyName: [this.corporateCustomerInfo?.companyName ?? '', Validators.required],
-      taxNumber: [this.corporateCustomerInfo?.taxNumber ??'', [Validators.required, Validators.minLength(10)]],
+      taxNumber: [this.corporateCustomerInfo?.taxNumber ?? '', [Validators.required]],
     });
   }
 
   saveState() {
     // STATE değişecek.. dispatch!!
-    if (!this.corporateCustomerForm.valid) return;
+   // if (!this.corporateCustomerForm.valid) return;
 
     // dispatch
     this.store.dispatch(
       setCorporateCustomerInfoModel({ corporateCustomerInfoModel: this.corporateCustomerForm.value })
     );
+    console.log('value',this.corporateCustomerForm.value);
+    console.log('save-state',this.corporateCustomerInfo);
+    
+    
   }
   
   createIndividualCustomerForm() {

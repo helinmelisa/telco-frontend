@@ -5,7 +5,9 @@ import { CorporateCustomerState, initialCorporateCustomerState } from './custome
 export const corporateCustomerReducer = createReducer<CorporateCustomerState>(
   initialCorporateCustomerState,
   on(setCorporateCustomerInfoModel, (currentState, action) => {
-    console.log(action);
+    console.log('action',action);
+    console.log('state',currentState);
+    
 
     return { ...currentState, corporateCustomerInfo: action.corporateCustomerInfoModel };
   })

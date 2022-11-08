@@ -11,20 +11,16 @@
 </div>
 
 <div class="container">
-  <form  *ngIf="isCorporate" [formGroup]="corporateCustomerForm">
+  <form  *ngIf="isCorporate" [formGroup]="corporateCustomerForm" >
     <div class="mb-3">
       <label for="companyName" class="form-label">Company Name</label>
       <input type="text" class="form-control" formControlName="companyName" id="companyName" >
     </div>
     <div class="mb-3">
       <label for="taxNumber" class="form-label">Tax Number</label>
-      <input type="number" class="form-control" id="taxNumber">
+      <input type="number" class="form-control" formControlName="taxNumber" id="taxNumber">
     </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-success" (click)="saveState()"  routerLink="/">Save</button>
   </form>
   
 </div>
