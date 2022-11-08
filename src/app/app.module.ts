@@ -33,7 +33,7 @@ import { appReducers } from './store/app.reducer';
 import { AppStoreState } from './store/app.state';
 import { CreateCustomerComponent } from './pages/create-customer/createcustomer.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { CreateCustomerServiceComponent } from './pages/create-customer-service/create-customer-service.component';
+import { CreateCustomerServiceComponent } from './pages/create-service/create-customer-service.component';
 
 
 @NgModule({

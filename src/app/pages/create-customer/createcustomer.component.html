@@ -20,20 +20,23 @@
       <label for="taxNumber" class="form-label">Tax Number</label>
       <input type="number" class="form-control" formControlName="taxNumber" id="taxNumber">
     </div>
-    <button class="btn btn-success" (click)="saveState()"  routerLink="/">Save</button>
+    <button class="btn btn-success" (click)="saveState()">Save</button>
   </form>
-  
 </div>
-<form *ngIf="!isCorporate" [formGroup]="individualCustomerForm"> 
-  <h1> New Individual Customer</h1>
-  <input 
-  formControlName="firstName" 
-  type="text" 
-  placeholder="Enter first name" />
-  <input
-    formControlName="birthDate"
-    type="number"
-    placeholder="Enter tax number"
-  />
-  <button type="submit">Add</button>
-</form>
+<div class="container">
+  <form *ngIf="!isCorporate" [formGroup]="individualCustomerForm"> 
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" formControlName="firstName" id="firstName" >
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" formControlName="lastName" id="lastName" >
+    </div>
+    <div class="mb-3">
+      <label for="birthDate" class="form-label">Birth Date</label>
+      <input type="date" class="form-control" formControlName="birthDate" id="birthDate">
+    </div>
+    <button class="btn btn-success" (click)="saveState()">Save</button>
+  </form>
+</div>
