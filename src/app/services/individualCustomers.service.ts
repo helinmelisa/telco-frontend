@@ -20,6 +20,5 @@ export class IndividualCustomersService {
   getIndividualCustomerDetail(id: number): Observable<IndividualCustomers[]>{
     return this.httpClient.get<IndividualCustomers[]>(`${this.controllerUrl}?customerId=${id}`)
   }
-
 }
 

@@ -33,7 +33,7 @@ export class IndividualCustomersComponent implements OnInit {
   }
  
   showDetails(id: number){
-    this.router.navigate(['individualCustomers/details', id])
+    this.router.navigate(['home/individualCustomers/details',  id])
   }
 }
 

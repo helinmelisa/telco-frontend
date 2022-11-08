@@ -5,6 +5,7 @@ import { IndividualCustomers } from 'src/app/models/individualCustomers';
 import { Subscription } from 'src/app/models/subscription';
 import { SubscriptionService } from 'src/app/services/subscription.service';
 import { IndividualCustomersService } from 'src/app/services/individualCustomers.service';
+import { Services } from 'src/app/models/services';
 
 @Component({
   selector: 'customer-detail',
@@ -14,8 +15,8 @@ import { IndividualCustomersService } from 'src/app/services/individualCustomers
 export class CustomerDetailComponent implements OnInit {
 
   individualCustomers!: IndividualCustomers[];
-  subscription!: Subscription[];
-  id !: number ;
+  subscription: Subscription[] =[];
+  customerId !: number ;
   details !: IndividualCustomers;
   
   constructor(
@@ -30,12 +31,12 @@ export class CustomerDetailComponent implements OnInit {
       this.individualCustomersService.getIndividualCustomerDetail(+params['id'])
       .subscribe(response => this.details = response[0])
     });
+    //this.getSubscriptions();
   }
 
-  getSubscription(id:number){
-    this.subscriptionService.getSubscription(id).subscribe(
-      (response) => {
-      this.subscription = response;
-    });
-  }
+  // getSubscriptions() {
+  //   this.subscriptionService.getToSubscriptions(this.customerId).subscribe((res) => {
+  //     this.subscription = res;
+  //   })
+  // }
 }

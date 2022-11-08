@@ -26,6 +26,7 @@ import { LoadingComponent } from './pages/loading/loading.component';
 import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
+import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { CustomerDetailComponent } from './pages/customer-detail/customer-detail
     LoadingComponent,
     IndividualCustomersComponent,
     CorporateCustomersComponent,
-    CustomerDetailComponent],
+    CustomerDetailComponent,
+    CorporateCustomersDetailComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -7,12 +7,21 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SubscriptionService {
-  private controllerUrl = `${environment.apiUrl}/subscription`;
+  private controllerUrl = `${environment.apiUrl}/subscriptions`;
 
   constructor(private httpClient: HttpClient) { }
 
-  
-  getSubscription(customerId:number): Observable<Subscription[]>{
-    return this.httpClient.get<Subscription[]>(`${this.controllerUrl}?customerId=${customerId}`)
+  getSubscription(id: number) {
+    return this.httpClient.get<Subscription>(
+      `${this.controllerUrl}/${id}`
+    );
+  }
+
+ getToSubscriptions(
+    customerId: number
+  ): Observable<Subscription[]> {
+    return this.httpClient.get<Subscription[]>(
+      `${this.controllerUrl}?customerId=${customerId}`
+    );
   }
 }

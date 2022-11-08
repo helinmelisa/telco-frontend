@@ -17,4 +17,8 @@ export class CorporateCustomersService  {
     return this.httpClient.get<CorporateCustomers[]>(this.controllerUrl);
   }
 
+  getCorporateCustomersDetail(id: number): Observable<CorporateCustomers[]>{
+    return this.httpClient.get<CorporateCustomers[]>(`${this.controllerUrl}?customerId=${id}`)
+  }
+
 }

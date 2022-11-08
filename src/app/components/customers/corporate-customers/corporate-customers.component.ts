@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { CorporateCustomers } from 'src/app/models/corporateCustomers';
 import { CorporateCustomersService } from 'src/app/services/corporate-customer.service';
 
@@ -10,9 +11,11 @@ import { CorporateCustomersService } from 'src/app/services/corporate-customer.s
 export class CorporateCustomersComponent implements OnInit {
 
   corporateCustomers!: CorporateCustomers[];
+  customerId: any;
 
   constructor(
-    private corporateCustomersService: CorporateCustomersService
+    private corporateCustomersService: CorporateCustomersService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,5 +29,8 @@ export class CorporateCustomersComponent implements OnInit {
     } )
   }
 
+  showDetails(id: number){
+    this.router.navigate(['home/corporateCustomers/details',  id])
+  }
 
 }
