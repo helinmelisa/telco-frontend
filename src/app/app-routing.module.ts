@@ -7,7 +7,7 @@ import { IndividualCustomersComponent } from './components/customers/individualC
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
 import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
-import { CreateCustomerComponent } from './pages/createcustomer/createcustomer.component';
+import { CreateCustomerComponent } from './pages/create-customer/createcustomer.component';
 
 
 const routes: Routes = [

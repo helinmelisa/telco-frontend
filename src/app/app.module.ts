@@ -31,8 +31,9 @@ import { OverlayTitleComponent } from './components/overlay-title/overlay-title.
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/app.reducer';
 import { AppStoreState } from './store/app.state';
-import { CreateCustomerComponent } from './pages/createcustomer/createcustomer.component';
+import { CreateCustomerComponent } from './pages/create-customer/createcustomer.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CreateCustomerServiceComponent } from './pages/create-customer-service/create-customer-service.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     CustomerDetailComponent,
     CorporateCustomersDetailComponent,
     OverlayTitleComponent,
-    CreateCustomerComponent],
+    CreateCustomerComponent,
+    CreateCustomerServiceComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

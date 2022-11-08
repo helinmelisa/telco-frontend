@@ -27,11 +27,11 @@
               class="nav-link"
               routerLink="/create-customer"
               routerLinkActive="active"
-              >Create Customer</a
-            >
+              >Create Customer</a>
           </li>
       </ul>
       <div *ngIf="isLogin" class="d-flex align-items-center">
+        <i class="bi bi-person-circle"></i>
         <span class="me-3">{{ (tokenUserModel$ | async)!.userName }}</span>
         <button (click)="logout()" class="btn btn-danger">Logout</button>
       </div>
