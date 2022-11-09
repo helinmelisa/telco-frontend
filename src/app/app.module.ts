@@ -27,6 +27,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { LoginComponent } from './pages/login/login.component';
 import { MatSelectModule } from '@angular/material/select';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NewCustomerComponent } from './pages/new-customer/new-customer.component';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OverlayTitleComponent } from './components/overlay-title/overlay-title.component';
@@ -60,7 +61,8 @@ import { appReducers } from './store/app.reducer';
       CreateCustomerComponent,
       SelectedCatalogsComponent,
       FilterNamePipe,
-      FilterCompanyPipe
+      FilterCompanyPipe,
+      NewCustomerComponent
    ],
    imports: [
       BrowserModule,
@@ -73,7 +75,7 @@ import { appReducers } from './store/app.reducer';
       NgbModule,
       RouterModule,
       ToastrModule.forRoot({
-         positionClass: 'toast-bottom-left',
+         positionClass: 'toast-bottom-right',
       }),
       JwtModule.forRoot({
          config: {
