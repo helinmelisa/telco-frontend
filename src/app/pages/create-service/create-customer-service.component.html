@@ -1,1 +1,9 @@
-<p>create-customer-service works!</p>
+<div class="container">
+    <form *ngIf="services"> 
+      <div class="mb-3 form-check align-center" *ngFor="let item of services">
+        <label for="service" class="form-check-label"> {{ item.name }}</label>
+        <input type="radio" class="form-check-input" id="service" >
+      </div>
+      <button class="btn btn-success align-left">Next</button>
+    </form>
+</div>

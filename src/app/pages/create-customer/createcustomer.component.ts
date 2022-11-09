@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -14,7 +15,7 @@ import { setIndividualCustomerInfoModel } from 'src/app/store/individualCustomer
   styleUrls: ['./createcustomer.component.css']
 })
 export class CreateCustomerComponent implements OnInit {
-  selected = '';
+  selected = 'individual';
   isCorporate = false;
   corporateCustomerForm!: FormGroup;
   individualCustomerForm!: FormGroup;
@@ -23,10 +24,18 @@ export class CreateCustomerComponent implements OnInit {
   corporateCustomerInfoModel$!: Observable<CorporateCustomerInfoModel | null>;
   corporateCustomerInfo!: CorporateCustomerInfoModel;
   individualCustomerInfo!: IndividualCustomerInfoModel;
+  birthDate: string;
+
   constructor(
     private store: Store<AppStoreState>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private datePipe: DatePipe,
   ) { 
+    const dateFormat = 'yyyy-MM-dd';
+    this.birthDate = datePipe.transform(
+      new Date().setDate(new Date().getDate() - 1),
+      dateFormat
+    );
     this.corporateCustomerInfoModel$ = this.store.select((s) => s.corporateCustomer.corporateCustomerInfo);
     this.individualCustomerInfoModel$ = this.store.select((s) => s.individualCustomer.individualCustomerInfo);
   }
@@ -51,14 +60,14 @@ export class CreateCustomerComponent implements OnInit {
   createCorporateCustomerForm() {
     this.corporateCustomerForm = this.formBuilder.group({
       companyName: [this.corporateCustomerInfo?.companyName ?? '', Validators.required],
-      taxNumber: [this.corporateCustomerInfo?.taxNumber ?? '', [Validators.required]],
+      taxNumber: [this.corporateCustomerInfo?.taxNumber ?? '', Validators.required],
     });
   }
 
   createIndividualCustomerForm() {
     this.individualCustomerForm = this.formBuilder.group({
-      firstName: [this.individualCustomerInfo?.firstName ?? '', Validators.required],
-      lastName: [this.individualCustomerInfo?.lastName ?? '', Validators.required],
+      firstName: [this.individualCustomerInfo?.firstName ?? '', [Validators.required]],
+      lastName: [this.individualCustomerInfo?.lastName ?? '', [Validators.required]],
       birthDate: [this.individualCustomerInfo?.birthDate ?? 'yyyy-MM-dd', [Validators.required]],
     });
   }
