@@ -35,7 +35,8 @@ import { CreateCustomerComponent } from './pages/create-customer/createcustomer.
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CreateCustomerServiceComponent } from './pages/create-service/create-customer-service.component';
 import { DatePipe } from '@angular/common';
-import { FilterPipe } from './pipes/filter-name.pipe';
+import { FilterNamePipe } from './pipes/filter-name.pipe';
+import { FilterCompanyPipe } from './pipes/filter-company.pipe';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { FilterPipe } from './pipes/filter-name.pipe';
     OverlayTitleComponent,
     CreateCustomerComponent,
     CreateCustomerServiceComponent,
-    FilterPipe],
+    FilterNamePipe,
+    FilterCompanyPipe],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -15,6 +15,10 @@ export class IndividualCustomersComponent implements OnInit {
   searchText: string = '';
   error: string = '';
   customerId: any;
+  customerName: string='';
+  birthDate: string;
+  nationalIdentity: string;
+  today: string = new Date().getFullYear().toString();
 
   constructor(
     private router: Router,

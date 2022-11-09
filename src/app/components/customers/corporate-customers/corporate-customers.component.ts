@@ -12,6 +12,7 @@ export class CorporateCustomersComponent implements OnInit {
 
   corporateCustomers!: CorporateCustomers[];
   customerId: any;
+  searchText: string = "";
 
   constructor(
     private corporateCustomersService: CorporateCustomersService,

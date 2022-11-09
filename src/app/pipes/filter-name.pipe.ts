@@ -3,20 +3,34 @@ import { IndividualCustomersComponent } from '../components/customers/individual
 import { IndividualCustomers } from '../models/individualCustomers';
 
 @Pipe({
-  name: 'filterPipe'
+  name: 'filterName'
 })
-export class FilterPipe implements PipeTransform {
+export class FilterNamePipe implements PipeTransform {
 
-  transform(value: any[], searchText: string): any[] {
-    // searchTerm boş ise bunu gönder
-    if(!searchText){
-      return value;
-    }
+ 
+  transform(value: IndividualCustomers[],key:string,name:string = ''):any {
 
-    return value.filter(p=>{
-      const name = p.name.toLowerCase().includes(searchText);
-      const lastName = p.lastName.toLowerCase().includes(searchText);
-      return (name + lastName)
-    })
+    if(!name) return value;
+
+    switch(key){
+      case "name":
+          return value.filter((customer) => customer.firstName.toLocaleLowerCase().includes(name.toLowerCase()));
+          break;
+      case "id":
+        return value.filter((customer) => customer.nationalIdentity.toString().includes(name));
+        break;
+      case "birthDay":
+        return value.filter((customer: IndividualCustomers) => {
+          const [day, month, year] = customer.birthDate.split('.');
+          let date = new Date(+year, +month - 1, +day);
+          return (
+            date > new Date(name)
+          );
+        });
+        break;
+      default:
+         alert("not working");
+         break;
   }
-}
+  }
+  }

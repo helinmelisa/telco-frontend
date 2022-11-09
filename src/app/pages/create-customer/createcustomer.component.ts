@@ -92,4 +92,4 @@ export class CreateCustomerComponent implements OnInit {
     console.log('save-state in',this.individualCustomerInfo);
   }
 }
-}
+} 
