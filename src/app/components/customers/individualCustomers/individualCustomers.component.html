@@ -1,3 +1,4 @@
+<input [(ngModel)]="searchText" type="text" />
 <div class="container">
   <div>
     <button (click)="goToCreateCustomerPage()" type="button" class="btn btn-primary float-right  mx-2 " style="--bs-btn-padding-y: .75rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;">
@@ -5,7 +6,7 @@
     </button>
   </div>
   <div class="row">
-    <div class="col-sm-3" style="width: 18rem" *ngFor="let item of individualCustomers">
+    <div class="col-sm-3" style="width: 18rem" *ngFor="let item of individualCustomers | filterPipe: searchText">
         <div class="card ol-sm-3 mt-2 px-2 p-2 m-1" >
           <div class="card-body">
             <i class="bi bi-person-bounding-box heading" width="300" height="300"></i>
