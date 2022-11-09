@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { LoginGuard } from './components/guards/login.guard';
-import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
+
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
-import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
 import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
 import { CreateCustomerComponent } from './pages/create-customer/createcustomer.component';
-import { CreateCustomerServiceComponent } from './pages/create-service/create-customer-service.component';
-
+import { CustomerDetailComponent } from './pages/customer-detail/customer-detail/customer-detail.component';
+import { HomeComponent } from './pages/home/home.component';
+import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
+import { LoginComponent } from './pages/login/login.component';
+import { LoginGuard } from './components/guards/login.guard';
+import { NgModule } from '@angular/core';
+import { SelectedCatalogsComponent } from './pages/selected-catalogs/selected-catalogs.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'home', pathMatch:'full'},
@@ -20,7 +20,7 @@ const routes: Routes = [
   {path:'individualCustomers/details/:id', component:CustomerDetailComponent},
   {path:'corporateCustomers/details/:id', component:CorporateCustomersDetailComponent},
   {path:'create-customer', component:CreateCustomerComponent},
-  {path:'create-customer-service', component:CreateCustomerServiceComponent}
+  {path:'selected-catalogs', component:SelectedCatalogsComponent}
 ];
 
 

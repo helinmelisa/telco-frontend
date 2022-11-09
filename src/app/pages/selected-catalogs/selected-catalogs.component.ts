@@ -8,16 +8,14 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ThisReceiver } from '@angular/compiler';
-import { addService } from 'src/app/store/service-store/service.action';
-import { group } from '@angular/animations';
 import { setSelectedCatalogs } from 'src/app/store/catalog-store/selectedCatalogs.action';
 
 @Component({
-   selector: 'app-create-customer-service',
-   templateUrl: './create-customer-service.component.html',
-   styleUrls: ['./create-customer-service.component.css']
+   selector: 'app-selected-catalogs',
+   templateUrl: './selected-catalogs.component.html',
+   styleUrls: ['./selected-catalogs.component.css']
 })
-export class CreateCustomerServiceComponent implements OnInit {
+export class SelectedCatalogsComponent implements OnInit {
 
    catalogs!: Catalog[];
    catalogForm!: FormGroup;
