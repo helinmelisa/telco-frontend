@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AuthService } from './services/auth.service';
 import { LoadingService } from './services/loading.service';
-
 
 @Component({
   selector: 'app-root',
@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   subscribeToLoading() {
     this.loadingService.isLoadingSubject.subscribe((isLoading) => {
       this.isLoading = isLoading;
-      console.log(`Is Loading değeri: ${isLoading}`);
     });
   }
 

@@ -16,6 +16,10 @@ export class CatalogService {
       return this.httpClient.get<Catalog[]>(this.controllerUrl);
    }
 
+   add(catalog: Catalog): Observable<Catalog> {
+      return this.httpClient.post<Catalog>(`${this.controllerUrl}`, catalog);
+   }
+
    update(catalog: Catalog): Observable<Catalog> {
       return this.httpClient.put<Catalog>(
          `${this.controllerUrl}/${catalog.id}`,
