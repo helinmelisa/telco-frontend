@@ -38,11 +38,13 @@ export class CreateCustomerComponent implements OnInit {
       //    new Date().setDate(new Date().getDate() - 1),
       //    dateFormat
       // );
+      this.store.select((s) => s.customerType.customerType).subscribe(res => this.selected = res ? res : 'individual');
       this.corporateCustomerInfoModel$ = this.store.select((s) => s.corporateCustomer.corporateCustomerInfo);
       this.individualCustomerInfoModel$ = this.store.select((s) => s.individualCustomer.individualCustomerInfo);
    }
 
    ngOnInit(): void {
+      this.setIsCorporate();
       this.corporateCustomerInfoModel$.subscribe((response) => {
          if (response != null) this.corporateCustomerInfo = response;
          this.createCorporateCustomerForm();
@@ -55,8 +57,13 @@ export class CreateCustomerComponent implements OnInit {
    }
 
    changeValue(event: any) {
-      this.isCorporate = this.selected == 'corporate' ? false : true;
+      this.selected = event;
+      this.setIsCorporate();
       this.store.dispatch(setCustomerType({ customerType: event }));
+   }
+   
+   setIsCorporate(){
+      this.isCorporate = this.selected == 'corporate';
    }
 
    createCorporateCustomerForm() {

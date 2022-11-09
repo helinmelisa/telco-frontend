@@ -5,6 +5,7 @@ import { Catalog } from 'src/app/models/catolog';
 import { CorporateCustomerInfoModel } from 'src/app/models/corporateCustomerInfoModel';
 import { IndividualCustomerInfoModel } from 'src/app/models/individualCustomerInfoModel';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -24,6 +25,7 @@ export class NewCustomerComponent implements OnInit {
 
   constructor(
      private store: Store<AppStoreState>,
+     private router: Router
   ) { 
      this.customerType$ = this.store.select(s => s.customerType.customerType);
      this.corporateCustomerInfoModel$ = this.store.select(s => s.corporateCustomer.corporateCustomerInfo);
@@ -46,4 +48,7 @@ export class NewCustomerComponent implements OnInit {
      console.log(this.selectedCatalogs);
   }
 
+   back() {
+      this.router.navigateByUrl('/selected-catalogs');
+   }
 }

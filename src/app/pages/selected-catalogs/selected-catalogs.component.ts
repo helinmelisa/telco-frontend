@@ -38,19 +38,6 @@ export class SelectedCatalogsComponent implements OnInit {
       // this.createCatalogForm();
    }
 
-   createCatalogForm() {
-      if(this.catalogs){
-         let g = {};
-         this.catalogs.forEach((catalog, index) => {
-            g = {
-               [`selectedCatalogs[${index}]`]: [false],
-               ...g
-            };
-         });
-         this.catalogForm = this.formBuilder.group(g);
-      }
-   }
-
    getCatalogs() {
       this.catalogService.getCatalogs().subscribe({
          next: response => this.catalogs = response,
@@ -65,6 +52,19 @@ export class SelectedCatalogsComponent implements OnInit {
       });
    }
 
+   createCatalogForm() {
+      if(this.catalogs){
+         let g = {};
+         this.catalogs.forEach((catalog, index) => {
+            g = {
+               [`selectedCatalogs[${index}]`]: [this.selectedCatalogs && this.selectedCatalogs.find(c => c.id == catalog.id)],
+               ...g
+            };
+         });
+         this.catalogForm = this.formBuilder.group(g);
+      }
+   }
+
    back() {
       this.router.navigateByUrl('/create-customer');
    }
@@ -77,9 +77,8 @@ export class SelectedCatalogsComponent implements OnInit {
       if (noneHasSelected) {
          this.toastr.error('Lüften en az bir seçim yapınız');
          return;
-      }      
+      }
      
-
       this.selectedCatalogs = this.catalogs.filter((c, i) => this.catalogForm.value[`selectedCatalogs[${i}]`]);
       this.store.dispatch(
          setSelectedCatalogs({ selectedCatalogs: this.selectedCatalogs })
