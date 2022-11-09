@@ -47,7 +47,6 @@ export class SelectedCatalogsComponent implements OnInit {
                ...g
             };
          });
-         console.log('g', g);
          this.catalogForm = this.formBuilder.group(g);
       }
    }
@@ -55,11 +54,10 @@ export class SelectedCatalogsComponent implements OnInit {
    getCatalogs() {
       this.catalogService.getCatalogs().subscribe({
          next: response => this.catalogs = response,
-         error: res => console.log(res),
+         error: res => this.toastr.error(res),
          // complete: () => this.createCatalogForm()
          complete: () => {
             this.selectedCatalogs$.subscribe((response) => {
-               // console.log('selectedCatalogs$ reponse', response);
                if (response != null) this.selectedCatalogs = response;
                this.createCatalogForm();
             });
@@ -72,7 +70,6 @@ export class SelectedCatalogsComponent implements OnInit {
    }
 
    next() {
-      console.log('save');
       let noneHasSelected = true;
       Object.entries(this.catalogForm.value).forEach(selected => {
          if (selected[1]) noneHasSelected = false;
@@ -83,15 +80,10 @@ export class SelectedCatalogsComponent implements OnInit {
       }      
      
 
-      // console.log('this.catalogForm.value', this.catalogForm.value);
       this.selectedCatalogs = this.catalogs.filter((c, i) => this.catalogForm.value[`selectedCatalogs[${i}]`]);
-      // console.log('this.selectedCatalogs', this.selectedCatalogs);
       this.store.dispatch(
          setSelectedCatalogs({ selectedCatalogs: this.selectedCatalogs })
       );
-      // console.log('state', this.selectedCatalogs$.subscribe(response => {
-      //    console.log('selectedCatalogs$ reponse from next method', response);
-      // }));
       this.router.navigateByUrl('/new-customer');
    }
 
