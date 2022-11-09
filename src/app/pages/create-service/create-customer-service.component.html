@@ -1,9 +1,10 @@
 <div class="container">
-    <form *ngIf="services"> 
-      <div class="mb-3 form-check align-center" *ngFor="let item of services">
-        <label for="service" class="form-check-label"> {{ item.name }}</label>
-        <input type="radio" class="form-check-input" id="service" >
+    <form *ngIf="catalogs" [formGroup]="catalogForm"> 
+      <div class="mb-3 form-check align-center" *ngFor="let item of catalogs; let i = index">
+        <label for="catalog{{i}}" class="form-check-label"> {{ item.name }}</label>
+        <input type="checkbox" class="form-check-input" formControlName="selectedCatalogs[{{i}}]" id="catalog{{i}}" >
       </div>
-      <button class="btn btn-success align-left">Next</button>
-    </form>
+      <button class="btn btn-success align-left" (click)="back()">Back</button>
+      <button class="btn btn-success align-left" (click)="next()">Next</button>
+   </form>
 </div>
