@@ -1,5 +1,6 @@
 export interface IndividualCustomers {
-    customerId: number;
+   // id: number;
+   customerId: number;
     firstName: string;
     lastName: string;
     nationalIdentity: number;

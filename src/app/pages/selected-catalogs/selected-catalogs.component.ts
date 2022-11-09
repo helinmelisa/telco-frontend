@@ -7,7 +7,7 @@ import { CatalogService } from 'src/app/services/catalog.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { ThisReceiver } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
 import { setSelectedCatalogs } from 'src/app/store/catalog-store/selectedCatalogs.action';
 
 @Component({
@@ -27,7 +27,8 @@ export class SelectedCatalogsComponent implements OnInit {
       private store: Store<AppStoreState>,
       private formBuilder: FormBuilder,
       private catalogService: CatalogService,
-      private router: Router
+      private router: Router,
+      private toastr: ToastrService
    ) { 
       this.selectedCatalogs$ = this.store.select(s => s.selectedCatalogs.selectedCatalogs);
    }
@@ -37,28 +38,13 @@ export class SelectedCatalogsComponent implements OnInit {
       // this.createCatalogForm();
    }
 
-   createCatalogForm() {
-      if(this.catalogs){
-         let g = {};
-         this.catalogs.forEach((catalog, index) => {
-            g = {
-               [`selectedCatalogs[${index}]`]: [false],
-               ...g
-            };
-         });
-         console.log('g', g);
-         this.catalogForm = this.formBuilder.group(g);
-      }
-   }
-
    getCatalogs() {
       this.catalogService.getCatalogs().subscribe({
          next: response => this.catalogs = response,
-         error: res => console.log(res),
+         error: res => this.toastr.error(res),
          // complete: () => this.createCatalogForm()
          complete: () => {
             this.selectedCatalogs$.subscribe((response) => {
-               console.log('selectedCatalogs$ reponse', response);
                if (response != null) this.selectedCatalogs = response;
                this.createCatalogForm();
             });
@@ -66,22 +52,43 @@ export class SelectedCatalogsComponent implements OnInit {
       });
    }
 
+   createCatalogForm() {
+      if(this.catalogs){
+         let g = {};
+         this.catalogs.forEach((catalog, index) => {
+            g = {
+               [`selectedCatalogs[${index}]`]: [this.selectedCatalogs && this.selectedCatalogs.find(c => c.id == catalog.id)],
+               ...g
+            };
+         });
+         this.catalogForm = this.formBuilder.group(g);
+      }
+   }
+
    back() {
+      this.saveSelections();
       this.router.navigateByUrl('/create-customer');
    }
 
    next() {
-      console.log('save');
-      console.log('this.catalogForm.value', this.catalogForm.value);
+      this.saveSelections();
+      this.router.navigateByUrl('/new-customer');
+   }
+
+   saveSelections(){
+      let noneHasSelected = true;
+      Object.entries(this.catalogForm.value).forEach(selected => {
+         if (selected[1]) noneHasSelected = false;
+      });
+      if (noneHasSelected) {
+         this.toastr.error('Lüften en az bir seçim yapınız');
+         return;
+      }
+
       this.selectedCatalogs = this.catalogs.filter((c, i) => this.catalogForm.value[`selectedCatalogs[${i}]`]);
-      console.log('this.selectedCatalogs', this.selectedCatalogs);
       this.store.dispatch(
          setSelectedCatalogs({ selectedCatalogs: this.selectedCatalogs })
       );
-      console.log('state', this.selectedCatalogs$.subscribe(response => {
-         console.log('selectedCatalogs$ reponse from next method', response);
-      }));
-      
    }
 
 }

@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
   HttpEvent,
+  HttpHandler,
   HttpInterceptor,
+  HttpRequest,
 } from '@angular/common/http';
-import { finalize, Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
+
+import { Injectable } from '@angular/core';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable()
@@ -19,9 +20,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     this.loadingService.startLoading();
     return next.handle(request).pipe(
       finalize(() => {
-        setTimeout(() => {
           this.loadingService.stopLoading();
-        }, 3000);
       })
     );
   }
