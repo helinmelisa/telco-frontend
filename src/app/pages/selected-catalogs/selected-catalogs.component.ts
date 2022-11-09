@@ -66,10 +66,16 @@ export class SelectedCatalogsComponent implements OnInit {
    }
 
    back() {
+      this.saveSelections();
       this.router.navigateByUrl('/create-customer');
    }
 
    next() {
+      this.saveSelections();
+      this.router.navigateByUrl('/new-customer');
+   }
+
+   saveSelections(){
       let noneHasSelected = true;
       Object.entries(this.catalogForm.value).forEach(selected => {
          if (selected[1]) noneHasSelected = false;
@@ -78,12 +84,11 @@ export class SelectedCatalogsComponent implements OnInit {
          this.toastr.error('Lüften en az bir seçim yapınız');
          return;
       }
-     
+
       this.selectedCatalogs = this.catalogs.filter((c, i) => this.catalogForm.value[`selectedCatalogs[${i}]`]);
       this.store.dispatch(
          setSelectedCatalogs({ selectedCatalogs: this.selectedCatalogs })
       );
-      this.router.navigateByUrl('/new-customer');
    }
 
 }
