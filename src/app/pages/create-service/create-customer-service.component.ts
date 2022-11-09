@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { ThisReceiver } from '@angular/compiler';
 import { addService } from 'src/app/store/service-store/service.action';
 import { group } from '@angular/animations';
+import { setSelectedCatalogs } from 'src/app/store/catalog-store/selectedCatalogs.action';
 
 @Component({
    selector: 'app-create-customer-service',
@@ -20,7 +21,8 @@ export class CreateCustomerServiceComponent implements OnInit {
 
    catalogs!: Catalog[];
    catalogForm!: FormGroup;
-   selectedCatalogs !: Catalog[];
+   selectedCatalogs!: Catalog[];
+   selectedCatalogs$!: Observable<Catalog[] | null>;
 
 
    constructor(
@@ -28,7 +30,9 @@ export class CreateCustomerServiceComponent implements OnInit {
       private formBuilder: FormBuilder,
       private catalogService: CatalogService,
       private router: Router
-   ) { }
+   ) { 
+      this.selectedCatalogs$ = this.store.select(s => s.selectedCatalogs.selectedCatalogs);
+   }
    
    ngOnInit(): void {
       this.getCatalogs();
@@ -44,7 +48,7 @@ export class CreateCustomerServiceComponent implements OnInit {
                ...g
             };
          });
-         console.log(g);
+         console.log('g', g);
          this.catalogForm = this.formBuilder.group(g);
       }
    }
@@ -53,7 +57,14 @@ export class CreateCustomerServiceComponent implements OnInit {
       this.catalogService.getCatalogs().subscribe({
          next: response => this.catalogs = response,
          error: res => console.log(res),
-         complete: () => this.createCatalogForm()
+         // complete: () => this.createCatalogForm()
+         complete: () => {
+            this.selectedCatalogs$.subscribe((response) => {
+               console.log('selectedCatalogs$ reponse', response);
+               if (response != null) this.selectedCatalogs = response;
+               this.createCatalogForm();
+            });
+         }
       });
    }
 
@@ -63,9 +74,15 @@ export class CreateCustomerServiceComponent implements OnInit {
 
    next() {
       console.log('save');
-      console.log(this.catalogForm.value);
+      console.log('this.catalogForm.value', this.catalogForm.value);
       this.selectedCatalogs = this.catalogs.filter((c, i) => this.catalogForm.value[`selectedCatalogs[${i}]`]);
-      console.log(this.selectedCatalogs);
+      console.log('this.selectedCatalogs', this.selectedCatalogs);
+      this.store.dispatch(
+         setSelectedCatalogs({ selectedCatalogs: this.selectedCatalogs })
+      );
+      console.log('state', this.selectedCatalogs$.subscribe(response => {
+         console.log('selectedCatalogs$ reponse from next method', response);
+      }));
       
    }
 
