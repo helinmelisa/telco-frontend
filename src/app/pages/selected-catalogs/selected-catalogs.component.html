@@ -1,10 +1,12 @@
 <div class="container">
-    <form *ngIf="catalogs" [formGroup]="catalogForm"> 
-      <div class="mb-3 form-check align-center" *ngFor="let item of catalogs; let i = index">
-        <label for="catalog{{i}}" class="form-check-label"> {{ item.name }} {{item.price}}</label>
-        <input type="checkbox" class="form-check-input" formControlName="selectedCatalogs[{{i}}]" id="catalog{{i}}" >
-      </div>
-      <button class="btn btn-success align-left" (click)="back()">Back</button>
-      <button class="btn btn-success align-right" (click)="next()">Next</button>
+<div class="justify-content-center align-items-center">
+  <h1>Catalogs</h1>
+  <form *ngIf="catalogs" [formGroup]="catalogForm"> 
+    <div class="mb-3 form-check" *ngFor="let item of catalogs; let i = index">
+      <label for="catalog{{i}}" class="form-check-label"> Catalog Name: {{ item.name }} <br> Catalog Price: {{item.price}} <br> Service Id: {{item.serviceId}} </label>
+      <input type="checkbox" class="form-check-input" formControlName="selectedCatalogs[{{i}}]" id="catalog{{i}}" >
+    </div>
+      <button class="btn btn-success align-left" style="float: left;" (click)="back()">Back</button>
+      <button class="btn btn-success align-right" style="float: right;" (click)="next()">Next</button>
    </form>
 </div>

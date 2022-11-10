@@ -1,19 +1,23 @@
-<div *ngIf="selectedCatalogs && selectedCatalogs.length > 0">
-  <p>{{ customerType }}</p>
-  <div *ngIf="customerType == 'individual'">
-    <p>{{ individualCustomerInfo.firstName }}</p>
-    <p>{{ individualCustomerInfo.lastName }}</p>
-    <p>{{ individualCustomerInfo.birthDate }}</p>
+<div class="container text-center">
+    <div *ngIf="selectedCatalogs && selectedCatalogs.length > 0">
+      <i class="bi bi-person-bounding-box heading" width="300" height="300"></i>
+      <h1>New Customer Overwiew</h1>
+      <p><strong>Customer Type:</strong> {{ customerType }}</p>
+      <div *ngIf="customerType == 'individual'">
+        <p><strong>Customer Name:</strong> {{ individualCustomerInfo.firstName }} {{ individualCustomerInfo.lastName }}</p>
+        <p><strong>Customer Date of Birth:</strong> {{ individualCustomerInfo.birthDate }}</p>
+      </div>
+      <div *ngIf="customerType == 'corporate'">
+        <p><strong>Company Name:</strong> {{ corporateCustomerInfo.companyName }}</p>
+        <p><strong>Tax Number:</strong> {{ corporateCustomerInfo.taxNumber }}</p>
+      </div>
+      <h3><strong>Selected Catalogs:</strong></h3>
+      <div *ngFor="let item of selectedCatalogs">
+       <p><strong>Catalog Name:</strong> {{ item.name }}</p>
+       <p> <strong>Catalog Price:</strong> {{ item.price }}</p>
+       <p><strong>Service Id:</strong>  {{ item.serviceId }}</p>
+      </div>
+      <button class="btn btn-success align-left" style="float: left;"(click)="back()">Back</button>
+      <button class="btn btn-success align-right" style="float: right;" (click)="save()">Save</button>
+    </div>
   </div>
-  <div *ngIf="customerType == 'corporate'">
-    <p>{{ corporateCustomerInfo.companyName }}</p>
-    <p>{{ corporateCustomerInfo.taxNumber }}</p>
-  </div>
-  <p *ngFor="let item of selectedCatalogs">
-    {{ item.name }}
-    {{ item.price }}
-    {{ item.serviceId }}
-  </p>
-  <button (click)="back()">Back</button>
-  <button (click)="save()">Save</button>
-</div>

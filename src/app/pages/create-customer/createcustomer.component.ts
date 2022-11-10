@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
 import { setCorporateCustomerInfoModel } from 'src/app/store/customerToRegister/customer.actions';
 import { setCustomerType } from 'src/app/store/customer-type/customer-type.actions';
 import { setIndividualCustomerInfoModel } from 'src/app/store/individualCustomerStore/individualCustomer.action';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
    selector: 'app-createcustomer',
@@ -30,6 +32,8 @@ export class CreateCustomerComponent implements OnInit {
    constructor(
       private store: Store<AppStoreState>,
       private formBuilder: FormBuilder,
+      private toastrService: ToastrService,
+      private router: Router
       // private datePipe: DatePipe,
       ) {
       // const dateFormat = 'yyyy-MM-dd';
@@ -69,31 +73,36 @@ export class CreateCustomerComponent implements OnInit {
    createCorporateCustomerForm() {
       this.corporateCustomerForm = this.formBuilder.group({
          companyName: [this.corporateCustomerInfo?.companyName ?? '', Validators.required],
-         taxNumber: [this.corporateCustomerInfo?.taxNumber ?? '', Validators.required],
+         taxNumber: [this.corporateCustomerInfo?.taxNumber ?? '', Validators.required]
       });
    }
 
    createIndividualCustomerForm() {
       this.individualCustomerForm = this.formBuilder.group({
-         firstName: [this.individualCustomerInfo?.firstName ?? '', [Validators.required]],
-         lastName: [this.individualCustomerInfo?.lastName ?? '', [Validators.required]],
-         birthDate: [this.individualCustomerInfo?.birthDate ?? 'yyyy-MM-dd', [Validators.required]],
+         firstName: [this.individualCustomerInfo?.firstName ?? '', Validators.required],
+         lastName: [this.individualCustomerInfo?.lastName ?? '', Validators.required],
+         birthDate: [this.individualCustomerInfo?.birthDate ?? '', [Validators.required]],
       });
    }
 
    saveState() {
 
-      if (!this.corporateCustomerForm.valid && !this.individualCustomerForm.valid) return;      
+      if (this.corporateCustomerForm.invalid && this.individualCustomerForm.invalid) {
+         this.toastrService.error("Lütfen gerekli alanları doldurduğunuzdan emin olun!"); 
+      }       
 
-      if (this.selected == 'corporate') {       
+      else if (this.selected == 'corporate') {       
          this.store.dispatch(
             setCorporateCustomerInfoModel({ corporateCustomerInfoModel: this.corporateCustomerForm.value })
             );
+         this.router.navigateByUrl('/selected-catalogs')
          }
-         else {
+      
+      else {
          this.store.dispatch(
             setIndividualCustomerInfoModel({ individualCustomerInfoModel: this.individualCustomerForm.value })
          );
+         this.router.navigateByUrl('/selected-catalogs')
       }
    }
 } 

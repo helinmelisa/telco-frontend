@@ -7,7 +7,7 @@ import { AppStoreState } from './store/app.state';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { CardsComponent } from './components/service-list/cards.component';
+import { CardsComponent } from './components/cards/cards.component';
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
 import { CreateCustomerComponent } from './pages/create-customer/createcustomer.component';
