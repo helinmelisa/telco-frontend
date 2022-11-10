@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-overlay-title',
@@ -10,7 +11,9 @@ export class OverlayTitleComponent implements OnInit {
   // ?: bu kısım aynı zamanda undefined olabilir demek.
   @Input() text!: string;
 
-  constructor() {
+  constructor(
+    public router: Router
+  ) {
     // undefined: bir şeyin tanımlı olmadığını gösterir.
     // null: programcı tarafından verilen bir değerdir. Dolayısıyla JS null değerini ayrı bir tip olarak ele alır.
     // this.text = null;

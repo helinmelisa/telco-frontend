@@ -1,18 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CorporateCustomers } from '../models/corporateCustomers';
 
 @Pipe({
   name: 'filterCompany'
 })
 export class FilterCompanyPipe implements PipeTransform {
-  transform(value: any[], searchText: string): any[] {
-    // searchTerm boş ise bunu gönder
-    if(!searchText){
-      return value;
-    }
+  transform(value: CorporateCustomers[],key:string,name:string = ''):any {
 
-    return value.filter(p=>{
-      const companyName = p.companyName.toLowerCase().includes(searchText);
-      return (companyName)
-    })
+    if(!name) return value;
+
+    switch(key){
+      case "name":
+        return value.filter((company) => company.companyName.toLocaleLowerCase().includes(name.toLowerCase()));
+          break;
+      case "id":
+        return value.filter((company) => company.taxNumber.toString().includes(name));
+        break;
+    }
   }
 }

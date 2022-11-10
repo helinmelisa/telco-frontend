@@ -1,1 +1,6 @@
-<h1 class="display-1">{{ text }}</h1>
+<div *ngIf="(router.url ==='/home')">
+    <h1 class="display-1">{{ text }}</h1>
+</div>
+<div *ngIf="(router.url ==='/login')">
+    <h1 class="display-2 text-center">{{ text }}</h1>
+</div>

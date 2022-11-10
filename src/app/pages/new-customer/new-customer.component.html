@@ -1,16 +1,18 @@
 <div class="container text-center">
     <div *ngIf="selectedCatalogs && selectedCatalogs.length > 0">
-      <i class="bi bi-person-bounding-box heading" width="300" height="300"></i>
+      <<i class="bi bi-person avatar"></i>>
       <h1>New Customer Overwiew</h1>
+      <h3><strong>Customer Info</strong></h3>
       <p><strong>Customer Type:</strong> {{ customerType }}</p>
       <div *ngIf="customerType == 'individual'">
         <p><strong>Customer Name:</strong> {{ individualCustomerInfo.firstName }} {{ individualCustomerInfo.lastName }}</p>
-        <p><strong>Customer Date of Birth:</strong> {{ individualCustomerInfo.birthDate }}</p>
+        <p><strong>Customer Birthday:</strong> {{ individualCustomerInfo.birthDate }}</p>
       </div>
       <div *ngIf="customerType == 'corporate'">
         <p><strong>Company Name:</strong> {{ corporateCustomerInfo.companyName }}</p>
         <p><strong>Tax Number:</strong> {{ corporateCustomerInfo.taxNumber }}</p>
       </div>
+      <hr style="height:2px;border-width:0;color:gray;background-color:gray">
       <h3><strong>Selected Catalogs:</strong></h3>
       <div *ngFor="let item of selectedCatalogs">
        <p><strong>Catalog Name:</strong> {{ item.name }}</p>
