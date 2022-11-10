@@ -38,6 +38,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { ToastrModule } from 'ngx-toastr';
 import { appReducers } from './store/app.reducer';
+import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 
 @NgModule({
    declarations: [
@@ -62,7 +63,8 @@ import { appReducers } from './store/app.reducer';
       SelectedCatalogsComponent,
       FilterNamePipe,
       FilterCompanyPipe,
-      NewCustomerComponent
+      NewCustomerComponent,
+      CapitalizeFirstPipe
    ],
    imports: [
       BrowserModule,
