@@ -1,0 +1,100 @@
+
+<!--class="text-center"-->
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="services" class="text-center">
+        <h1 >Services</h1> 
+        <ul class="list-group" *ngFor="let service of services | filterService: searchText">
+          <li class="list-group-item"> {{ service.name }}
+            <br>
+          <div class="inner">
+            <button class="btn btn-primary btn-sm mt-2 " (click)="edit(service.id)">Update</button>
+          </div>
+          <div class="inner">
+            <button class="btn btn-dark btn-sm mt-2 mx-auto" (click)="delete(service.id)">Delete</button>
+          </div>
+      </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col text-center">
+      <h1>Filter By Name</h1> 
+      <input [(ngModel)]="searchText" type="text" placeholder="Search By Name"/>
+      <br> <br>
+      <form [formGroup]="addForm" (submit)="add()">
+        <h1>Add Service</h1> 
+        <input formControlName="name" type="text" placeholder="Enter service name" />
+        <br>
+        <button type="submit" class="btn btn-primary mt-2">Add</button>
+        <p>{{ addError }}</p>
+      </form>
+      <form *ngIf="isEditing" [formGroup]="editForm" (submit)="update()">
+        <h1>Update Service</h1>
+        <input formControlName="name" type="text" placeholder="Enter service name" />
+        <br>
+        <button type="submit" class="btn btn-primary mt-2">Update</button>
+        <p>{{ editError }}</p>
+      </form>
+  </div>
+</div>
+  <!-- <div *ngIf="services">
+    <ul class="list-group list-group-flush" *ngFor="let service of services | filterService: searchText">
+      <li class="list-group-item"> {{ service.name }}
+        <br>
+      <button class="btn btn-primary btn-sm" (click)="edit(service.id)">Update</button>
+    <button class="btn btn-dark  btn-sm" (click)="delete(service.id)">Delete</button>
+  </li>
+    </ul>
+  </div>
+  <div>
+    <form *ngIf="isEditing" [formGroup]="editForm" (submit)="update()">
+      <input formControlName="name" type="text" placeholder="Enter service name" />
+      <button type="submit" class="btn btn-primary">Güncelle</button>
+      <p>{{ editError }}</p>
+    </form>
+  </div> -->
+
+
+<!--services !== null-->
+<!-- <ul *ngIf="services">
+  <li *ngFor="let item of services | filterService: searchText">
+    {{ item.name }}
+  </li>
+</ul> -->
+
+<!-- <div class="row">
+    <div class="col-sm-3 mt-2 px-2 p-2 m-1" *ngFor="let service of services">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{service.name}}</h5>
+        </div>
+    </div>
+</div> -->
+<!-- <div class="card text-center">
+    <div class="card-header">
+      Services
+    </div>
+    <div class="card">
+        <div class="card-body" *ngFor="let service of services">
+            <h5 class="card-title">{{service.name}}</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
+          <div class="card-footer text-muted">
+            Pair 4
+          </div>
+    </div>
+  </div> -->
+<!-- <div  class="row">
+    <ng-template ngFor let-item [ngForOf]="products" >
+        <ng-template class="col-sm-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+            </div>
+        </div>
+    </ng-template>
+</ng-template> -->
+

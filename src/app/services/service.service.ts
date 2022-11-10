@@ -16,14 +16,15 @@ export class ServicesService {
     return this.httpClient.get<Services[]>(this.controllerUrl);
   }
 
-  update(services: Services): Observable<Services> {
-    return this.httpClient.put<Services>(
-      `${this.controllerUrl}/${services.id}`,
-      services
-    );
-  }
+  add(service: Services): Observable<Services> {
+    return this.httpClient.post<Services>(this.controllerUrl, service);
+ }
 
-  delete(id: number): Observable<void> {
+ update(service: Services): Observable<Services> {
+    return this.httpClient.put<Services>(`${this.controllerUrl}/${service.id}`, service);
+ }
+
+ delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.controllerUrl}/${id}`);
-  }
+ }
 }
