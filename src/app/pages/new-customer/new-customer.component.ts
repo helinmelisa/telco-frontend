@@ -113,6 +113,10 @@ export class NewCustomerComponent implements OnInit {
                   },
                });
             }
+         },
+         error: (error) => {
+            console.log(error);
+            this.toastr.error('İşlem başarısız');
          }
       });
    }

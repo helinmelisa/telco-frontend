@@ -6,12 +6,12 @@ import { CorporateCustomerInfoModel } from 'src/app/models/corporateCustomerInfo
 import { DatePipe } from '@angular/common';
 import { IndividualCustomerInfoModel } from 'src/app/models/individualCustomerInfoModel';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { setCorporateCustomerInfoModel } from 'src/app/store/customerToRegister/customer.actions';
 import { setCustomerType } from 'src/app/store/customer-type/customer-type.actions';
 import { setIndividualCustomerInfoModel } from 'src/app/store/individualCustomerStore/individualCustomer.action';
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Component({
    selector: 'app-createcustomer',
@@ -86,23 +86,25 @@ export class CreateCustomerComponent implements OnInit {
    }
 
    saveState() {
-
-      if (this.corporateCustomerForm.invalid && this.individualCustomerForm.invalid) {
-         this.toastrService.error("Lütfen gerekli alanları doldurduğunuzdan emin olun!"); 
-      }       
-
-      else if (this.selected == 'corporate') {       
-         this.store.dispatch(
-            setCorporateCustomerInfoModel({ corporateCustomerInfoModel: this.corporateCustomerForm.value })
-            );
-         this.router.navigateByUrl('/selected-catalogs')
+      if (this.selected == 'corporate') {
+         if (this.corporateCustomerForm.invalid) {
+            this.toastrService.error("Lütfen gerekli alanları doldurduğunuzdan emin olun!"); 
+         } else {
+            this.store.dispatch(
+               setCorporateCustomerInfoModel({ corporateCustomerInfoModel: this.corporateCustomerForm.value })
+               );
+            this.router.navigateByUrl('/selected-catalogs')
          }
-      
-      else {
-         this.store.dispatch(
-            setIndividualCustomerInfoModel({ individualCustomerInfoModel: this.individualCustomerForm.value })
-         );
-         this.router.navigateByUrl('/selected-catalogs')
+      } else {
+         if (this.individualCustomerForm.invalid) {
+            this.toastrService.error("Lütfen gerekli alanları doldurduğunuzdan emin olun!");
+         } else {
+            this.store.dispatch(
+               setIndividualCustomerInfoModel({ individualCustomerInfoModel: this.individualCustomerForm.value })
+            );
+            this.router.navigateByUrl('/selected-catalogs')
+         }
       }
    }
+
 } 
