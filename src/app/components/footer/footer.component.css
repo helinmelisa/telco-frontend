@@ -1,10 +1,11 @@
 .footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0px;
     width: 100%;
     background-color: rgb(114, 110, 110);
     color: white;
+    margin-top: 2rem;
     text-align: center;
     overflow: hidden;
   }

@@ -1,0 +1,11 @@
+.customer {
+   margin-top: 1.25rem;
+   width: 35%;
+   min-width: 15rem;
+   max-width: 25rem;
+}
+
+.form {
+   display: flex;
+   flex-direction: column;
+}
