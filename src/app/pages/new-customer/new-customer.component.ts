@@ -79,7 +79,7 @@ export class NewCustomerComponent implements OnInit {
                this.individualCustomerService.add(individiual).subscribe({
                   next: (individualRes) => {
                      console.log('indiv', individualRes);
-                     this.addSubscriptionsAndInvoices(this.customerType, res.id, individualRes, this.selectedCatalogs);
+                     this.addSubscriptionsAndInvoices(res.id, this.selectedCatalogs);
                   },
                   error: error => {
                      console.log(error);
@@ -101,8 +101,9 @@ export class NewCustomerComponent implements OnInit {
                };
 
                this.corporateCustomerService.add(corporate).subscribe({
-                  next: (res) => {
-                     // this.addServiceSubscriptionAndInvoice(res);//seçilen servislerin,subscription'ların ve invoice'lerin eklenme işlemlerinin yapıldığı metot...
+                  next: (corporateRes) => {
+                     console.log({corporateRes});
+                     this.addSubscriptionsAndInvoices(res.id, this.selectedCatalogs);
                   },
                   error: error => {
                      console.log(error);
@@ -125,9 +126,8 @@ export class NewCustomerComponent implements OnInit {
       });
    }
 
-   addSubscriptionsAndInvoices(type: string, id: number, from: any, catalogs: Catalog[]) {
+   addSubscriptionsAndInvoices(id: number, catalogs: Catalog[]) {
       catalogs.forEach(catalog => {
-
          const sub = {
             id: Math.floor(100 + Math.random() * 9000000000),
             customerId: id,
