@@ -7,6 +7,8 @@ import { AppStoreState } from './store/app.state';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ButtonModule } from 'primeng/button';
+import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 import { CardsComponent } from './components/cards/cards.component';
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
@@ -36,9 +38,9 @@ import { SelectedCatalogsComponent } from './pages/selected-catalogs/selected-ca
 import { SplitPipe } from './pipes/split.pipe';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
+import { TableModule } from 'primeng/table';
 import { ToastrModule } from 'ngx-toastr';
 import { appReducers } from './store/app.reducer';
-import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 
 @NgModule({
    declarations: [
@@ -67,6 +69,8 @@ import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
       CapitalizeFirstPipe
    ],
    imports: [
+      TableModule,
+      ButtonModule,
       BrowserModule,
       BrowserAnimationsModule,
       AppRoutingModule,

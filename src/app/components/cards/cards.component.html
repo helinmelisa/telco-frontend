@@ -1,7 +1,80 @@
+<div class="card">
+  <p-table
+    [value]="services"
+    dataKey="id"
+    editMode="row"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 20%">Services</th>
+        <th style="width: 20%"></th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-service
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="service">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="service.name"
+                required
+              />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ service.name }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button
+              *ngIf="!editing"
+              pButton
+              pRipple
+              type="button"
+              pInitEditableRow
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(service)"
+              class="p-button-rounded p-button-text"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pSaveEditableRow
+              icon="pi pi-check"
+              (click)="onRowEditSave(service)"
+              class="p-button-rounded p-button-text p-button-success mr-2"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pCancelEditableRow
+              icon="pi pi-times"
+              (click)="onRowEditCancel(service, ri)"
+              class="p-button-rounded p-button-text p-button-danger"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
 
-<!--class="text-center"-->
+<!--current-->
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col">
       <div *ngIf="services" class="text-center">
@@ -38,63 +111,4 @@
         <p>{{ editError }}</p>
       </form>
   </div>
-</div>
-  <!-- <div *ngIf="services">
-    <ul class="list-group list-group-flush" *ngFor="let service of services | filterService: searchText">
-      <li class="list-group-item"> {{ service.name }}
-        <br>
-      <button class="btn btn-primary btn-sm" (click)="edit(service.id)">Update</button>
-    <button class="btn btn-dark  btn-sm" (click)="delete(service.id)">Delete</button>
-  </li>
-    </ul>
-  </div>
-  <div>
-    <form *ngIf="isEditing" [formGroup]="editForm" (submit)="update()">
-      <input formControlName="name" type="text" placeholder="Enter service name" />
-      <button type="submit" class="btn btn-primary">Güncelle</button>
-      <p>{{ editError }}</p>
-    </form>
-  </div> -->
-
-
-<!--services !== null-->
-<!-- <ul *ngIf="services">
-  <li *ngFor="let item of services | filterService: searchText">
-    {{ item.name }}
-  </li>
-</ul> -->
-
-<!-- <div class="row">
-    <div class="col-sm-3 mt-2 px-2 p-2 m-1" *ngFor="let service of services">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{service.name}}</h5>
-        </div>
-    </div>
 </div> -->
-<!-- <div class="card text-center">
-    <div class="card-header">
-      Services
-    </div>
-    <div class="card">
-        <div class="card-body" *ngFor="let service of services">
-            <h5 class="card-title">{{service.name}}</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          </div>
-          <div class="card-footer text-muted">
-            Pair 4
-          </div>
-    </div>
-  </div> -->
-<!-- <div  class="row">
-    <ng-template ngFor let-item [ngForOf]="products" >
-        <ng-template class="col-sm-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">{{ item.description }}</p>
-            </div>
-        </div>
-    </ng-template>
-</ng-template> -->
-
