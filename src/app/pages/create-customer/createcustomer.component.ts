@@ -73,7 +73,7 @@ export class CreateCustomerComponent implements OnInit {
    createCorporateCustomerForm() {
       this.corporateCustomerForm = this.formBuilder.group({
          companyName: [this.corporateCustomerInfo?.companyName ?? '', Validators.required],
-         taxNumber: [this.corporateCustomerInfo?.taxNumber ?? '', Validators.required]
+         taxNumber: [this.corporateCustomerInfo?.taxNumber ?? '', Validators.required],
       });
    }
 

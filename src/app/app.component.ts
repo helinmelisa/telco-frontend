@@ -53,9 +53,11 @@ export class AppComponent implements OnInit {
   handleOnLogout() {
     this.overlayTitleText = 'Hoşçakal, tekrar bekleriz...';
   }
+
   handleOnLogoutWithValue(eventValue: string) {
     this.overlayTitleText = eventValue;
   }
+  
   handleOnLogin(): void {
     //* onLogin event'ine (subject) abone olduk, dolayısıyla her tetiklendiğinde ilgili event fonksiyonu çalışır.
     this.authService.onLogin.subscribe({

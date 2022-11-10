@@ -53,59 +53,58 @@ export class NewCustomerComponent implements OnInit {
    back() {
       this.router.navigateByUrl('/selected-catalogs');
    }
+
    save(){
-      
+      const newCustomer: Customer = {
+         customerNumber: Math.floor(10000000 + Math.random() * 90000000),
+         id: Math.floor(10000000 + Math.random() * 90000000)
+      };
+      this.customerService.add(newCustomer).subscribe({  //customer json'a post edildi..
+         next: (res) => {
+            if (this.customerType == 'individual') {//individiual customer seçilmiş ise...
+               const addToIndividual = {
+                  id: res.id,
+                  customerId: res.id,
+                  ...this.individualCustomerInfo,
+                  nationalIdentity: Math.floor(10000000000 + Math.random() * 9000000000),
+               };
+               console.log(addToIndividual);
+
+               this.individualCustomerService.add(addToIndividual).subscribe({//individualCustomer json'a post edildi..
+                  next: (res) => {
+                    // this.addServiceSubscriptionAndInvoice(res);//seçilen servislerin,subscription'ların ve invoice'lerin eklenme işlemlerinin yapıldığı metot...
+                  }
+               });
    }
-//    save(){
-//       const newCustomer: Customer = {
-//          customerNumber: Math.floor(10000000 + Math.random() * 90000000)
-//       };
-//       this.customerService.add(newCustomer).subscribe({  //customer json'a post edildi..
-//          next: (res) => {
-//             if (this.customerType == 'individual') {//individiual customer seçilmiş ise...
-//                const addToIndividual = {
-//                   id: res.id,
-//                   customerId: res.id,
-//                   ...this.individualCustomerInfo,
-//                   nationalIdentity: Math.floor(10000000000 + Math.random() * 9000000000),
-//                };
-//                console.log(addToIndividual);
-
-//                // this.individualCustomerService.createCustomer(addToIndividual).subscribe({//individualCustomer json'a post edildi..
-//                //    next: (res) => {
-//                //       this.addServiceSubscriptionAndInvoice(res);//seçilen servislerin,subscription'ların ve invoice'lerin eklenme işlemlerinin yapıldığı metot...
-//                //    }
-//                // });
-//    }
-// }
-// })
-//    //    const customer: Customer = {
-//    //       customerNumber: 1515
-//    //    };
-//    //    this.customerService.add(customer)
+}
+})
+      // const customer: Customer = {
+      //    customerNumber: 1515
+      // };
+      // this.customerService.add(customer)
 
 
-//    //    console.log(this.customerType);
+      // console.log(this.customerType);
 
 
-//    //    if (this.customerType == 'individual') {
+       if (this.customerType == 'individual') {
       
       
-//    //       // const customer: IndividualCustomerInfoModel = {
-//    //       //    ... this.individualCustomerInfo
-//    //       // };
-//    //       // this.individualCustomerService.add(customer).subscribe({
-//    //       //    next: res => console.log(res),
-//    //       //    error: error => {
-//    //       //       console.log(error);
-//    //       //       this.toastr.error('İşlem başarısız');
-//    //       //    },
-//    //       //    complete: () => this.toastr.success('İşlem başarılı'),
-//    //       // })         
-//    //       console.log(this.individualCustomerInfo);
-//    //    } else {
-//    //       console.log(this.corporateCustomerInfo);
-//    //    }
-//    //    console.log(this.selectedCatalogs);
-//    }
+         // const customer: IndividualCustomerInfoModel = {
+         //    ... this.individualCustomerInfo
+         // };
+         // this.individualCustomerService.add(customer).subscribe({
+         //    next: res => console.log(res),
+         //    error: error => {
+         //       console.log(error);
+         //       this.toastr.error('İşlem başarısız');
+         //    },
+         //    complete: () => this.toastr.success('İşlem başarılı'),
+         // })         
+         console.log(this.individualCustomerInfo);
+      } else {
+         console.log(this.corporateCustomerInfo);
+      }
+      console.log(this.selectedCatalogs);
+   }
 }

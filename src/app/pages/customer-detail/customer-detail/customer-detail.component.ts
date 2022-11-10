@@ -29,11 +29,13 @@ export class CustomerDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.individualCustomersService.getIndividualCustomerDetail(+params['id'])
+      this.individualCustomersService.getIndividualCustomerDetail(params['id'])
       .subscribe(response =>
         {console.log(response);
           console.log('deneme');
            this.details = response[0]
+           console.log(this.details);
+           
            this.customerId=this.details.customerId;
            this.getSubscriptions();
         }
