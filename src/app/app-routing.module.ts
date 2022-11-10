@@ -7,7 +7,7 @@ import { CustomerDetailComponent } from './pages/customer-detail/customer-detail
 import { HomeComponent } from './pages/home/home.component';
 import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
 import { LoginComponent } from './pages/login/login.component';
-import { LoginGuard } from './components/guards/login.guard';
+import { LoginGuard } from './guards/login.guard';
 import { NewCustomerComponent } from './pages/new-customer/new-customer.component';
 import { NgModule } from '@angular/core';
 import { SelectedCatalogsComponent } from './pages/selected-catalogs/selected-catalogs.component';

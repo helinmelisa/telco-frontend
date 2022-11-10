@@ -21,7 +21,7 @@ export class SelectedCatalogsComponent implements OnInit {
    catalogForm!: FormGroup;
    selectedCatalogs!: Catalog[];
    selectedCatalogs$!: Observable<Catalog[] | null>;
-
+   noneHasSelected: boolean = true;
 
    constructor(
       private store: Store<AppStoreState>,
@@ -72,16 +72,17 @@ export class SelectedCatalogsComponent implements OnInit {
 
    next() {
       this.saveSelections();
-      this.router.navigateByUrl('/new-customer');
+      if(this.noneHasSelected) this.toastr.error('Lüften en az bir seçim yapınız');
+      if(!this.noneHasSelected) {
+         this.router.navigateByUrl('/new-customer');
+      }
    }
 
    saveSelections(){
-      let noneHasSelected = true;
       Object.entries(this.catalogForm.value).forEach(selected => {
-         if (selected[1]) noneHasSelected = false;
+         if (selected[1]) this.noneHasSelected = false;
       });
-      if (noneHasSelected) {
-         this.toastr.error('Lüften en az bir seçim yapınız');
+      if (this.noneHasSelected) {
          return;
       }
 

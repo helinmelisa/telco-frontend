@@ -1,19 +1,19 @@
-
 <div class="container">
-    <div *ngIf="!!details">
-        <h1>User Details</h1>
-    <div class="row" *ngFor="let item of subscription">
-        <div class="col-sm-3 mt-2 px-2 p-2 m-1">
-            <div class="card">
-              <div class="card-body">
-                <i class="bi bi-person-bounding-box heading"></i>
-                <h3 class="card-title">Customer Id: {{ details.customerId }}</h3>
-                <h3 class="card-title">Company Name: {{ details.companyName }}</h3>
-                <h3 class="card-title">National Identity: {{ details.taxNumber }}</h3>
-                <h3 class="card-title">Service Id: {{ item.serviceId }}</h3>
-                <h3 class="card-title">Date Started: {{ item.dateStarted }} </h3>
-            </div>
+  <div *ngIf="!!details">
+    <h1>User Details</h1>
+    <div class="col-sm-3 mt-2 px-2 p-2 m-1">
+      <div class="card">
+        <div class="card-body">
+          <i class="bi bi-person-bounding-box heading"></i>
+          <h3 class="card-title">Customer Id: {{ details.customerId }}</h3>
+          <h3 class="card-title">Company Name: {{ details.companyName }}</h3>
+          <h3 class="card-title">National Identity: {{ details.taxNumber }}</h3>
+          <div class="row" *ngFor="let item of subscription">
+            <h3 class="card-title">Service Id: {{ item.serviceId }}</h3>
+            <h3 class="card-title">Date Started: {{ item.dateStarted }}</h3>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
+  </div>
 </div>
