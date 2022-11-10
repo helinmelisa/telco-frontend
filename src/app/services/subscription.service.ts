@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Subscription } from '../models/subscription';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,10 @@ export class SubscriptionService {
       `${this.controllerUrl}/${id}`
     );
   }
+  
+   add(sub: Subscription): Observable<Subscription> {
+      return this.httpClient.post<Subscription>(this.controllerUrl, sub);
+   }
 
  getToSubscriptions(
     customerId: number

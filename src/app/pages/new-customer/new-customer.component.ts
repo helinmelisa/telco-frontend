@@ -7,11 +7,12 @@ import { CorporateCustomersService } from 'src/app/services/corporate-customer.s
 import { Customer } from 'src/app/models/customer';
 import { CustomerService } from 'src/app/services/customer.service';
 import { IndividualCustomerInfoModel } from 'src/app/models/individualCustomerInfoModel';
-import { IndividualCustomers } from 'src/app/models/individualCustomers';
 import { IndividualCustomersService } from 'src/app/services/individualCustomers.service';
+import { InvoiceService } from 'src/app/services/invoice.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { SubscriptionService } from 'src/app/services/subscription.service';
 import { ToastrService } from 'ngx-toastr';
 import { resetCatalogs } from 'src/app/store/catalog-store/selectedCatalogs.action';
 import { resetCorporateCustomer } from 'src/app/store/customerToRegister/customer.actions';
@@ -39,6 +40,8 @@ export class NewCustomerComponent implements OnInit {
       private customerService: CustomerService,
       private individualCustomerService: IndividualCustomersService,
       private corporateCustomerService: CorporateCustomersService,
+      private subscriptionService: SubscriptionService,
+      private invoiceService: InvoiceService,
    ) {
       this.customerType$ = this.store.select(s => s.customerType.customerType);
       this.corporateCustomerInfoModel$ = this.store.select(s => s.corporateCustomer.corporateCustomerInfo);
@@ -74,8 +77,9 @@ export class NewCustomerComponent implements OnInit {
                };
 
                this.individualCustomerService.add(individiual).subscribe({
-                  next: (res) => {
-                     // this.addServiceSubscriptionAndInvoice(res);//seçilen servislerin,subscription'ların ve invoice'lerin eklenme işlemlerinin yapıldığı metot...
+                  next: (individualRes) => {
+                     console.log('indiv', individualRes);
+                     this.addSubscriptionsAndInvoices(this.customerType, res.id, individualRes, this.selectedCatalogs);
                   },
                   error: error => {
                      console.log(error);
@@ -95,7 +99,7 @@ export class NewCustomerComponent implements OnInit {
                   customerId: res.id,
                   ...this.corporateCustomerInfo,
                };
-               
+
                this.corporateCustomerService.add(corporate).subscribe({
                   next: (res) => {
                      // this.addServiceSubscriptionAndInvoice(res);//seçilen servislerin,subscription'ların ve invoice'lerin eklenme işlemlerinin yapıldığı metot...
@@ -118,6 +122,35 @@ export class NewCustomerComponent implements OnInit {
             console.log(error);
             this.toastr.error('İşlem başarısız');
          }
+      });
+   }
+
+   addSubscriptionsAndInvoices(type: string, id: number, from: any, catalogs: Catalog[]) {
+      catalogs.forEach(catalog => {
+
+         const sub = {
+            id: Math.floor(100 + Math.random() * 9000000000),
+            customerId: id,
+            serviceId: catalog.serviceId,
+            dateStarted: new Date().toString(),
+         };
+         this.subscriptionService.add(sub).subscribe({
+            next: res => {
+               console.log({res});
+               const invoice = {
+                  id: Math.floor(100 + Math.random() * 9000000000),
+                  subscriptionId: res.id,
+                  dateCreated: res.dateStarted,
+                  dateDue: "2022-07-28",
+               }
+               console.log({invoice});
+               this.invoiceService.add(invoice).subscribe(inRes => console.log({inRes}));
+            },
+            error: (err) => {
+               console.log(err);
+               this.toastr.error('İşlem başarısız');
+            }
+         });
       });
    }
 
