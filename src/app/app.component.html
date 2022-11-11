@@ -1,12 +1,16 @@
-<app-navbar (onLogoutWithValue)="handleOnLogoutWithValue($event)"></app-navbar>
+<app-navbar *ngIf="(router.url !=='/login')"
+  class="navigation"
+  (onLogoutWithValue)="handleOnLogoutWithValue($event)"
+></app-navbar>
+
 <!-- logout olduğunu yakalasın -->
 <!-- Hoşçakal -->
-<div class="container">
-  <!-- text="Hoşgeldiniz" statik string tipinde veriler verdiğimizde kullanabiliriz. -->
-  <!-- [text]="overlayTitleText" hem dinamik değişkenler için, hem de string ve diğer tipler için kullanabiliriz. -->
-  <app-overlay-title [text]="overlayTitleText"></app-overlay-title>
-</div>
 
-<router-outlet></router-outlet>
+  <div [ngClass]="{'container-app': router.url !=='/login'}">
+    <!-- text="Hoşgeldiniz" statik string tipinde veriler verdiğimizde kullanabiliriz. -->
+    <!-- [text]="overlayTitleText" hem dinamik değişkenler için, hem de string ve diğer tipler için kullanabiliriz. -->
+    <app-overlay-title [text]="overlayTitleText"></app-overlay-title>
+    <router-outlet></router-outlet>
+  </div>
 
-<app-footer></app-footer>
+<app-footer *ngIf="(router.url !=='/login')" class="footer"></app-footer>

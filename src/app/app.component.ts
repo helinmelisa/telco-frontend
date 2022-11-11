@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from './services/auth.service';
 import { LoadingService } from './services/loading.service';
+import { Router } from '@angular/router';
 
 @Component({
    selector: 'app-root',
@@ -18,8 +19,10 @@ export class AppComponent implements OnInit {
 
 
    constructor(
+      public router: Router,
       private loadingService: LoadingService,
       private authService: AuthService,
+      
    ) { }
 
    ngOnInit(): void {
