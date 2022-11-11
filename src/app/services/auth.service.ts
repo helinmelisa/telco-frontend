@@ -26,7 +26,7 @@ export class AuthService {
   //* - EventEmitter:  component.html tarafında, @Output() ile kullanılır.
   //* - Subject: component.ts arası kullanılır.
   //* - BehaviorSubject: Subject'ın bir türüdür. Subject'ın ilk değerini alır.
-  onLogin = new BehaviorSubject<string>('Hoşgeldiniz!');
+  onLogin = new BehaviorSubject<string>('Hoş geldiniz!');
   tokenUserModel$: Observable<TokenUserModel | null>;
 
   constructor(

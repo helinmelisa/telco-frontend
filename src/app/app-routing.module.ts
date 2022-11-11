@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { SelectedCatalogsComponent } from './pages/selected-catalogs/selected-catalogs.component';
 
 const routes: Routes = [
-   { path: '', redirectTo: 'home', pathMatch: 'full' },
+   { path: '', redirectTo: 'login', pathMatch: 'full' },
    { path: 'login', component: LoginComponent },
    { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
    { path: 'individualCustomers', component: IndividualCustomersComponent, canActivate: [LoginGuard] },

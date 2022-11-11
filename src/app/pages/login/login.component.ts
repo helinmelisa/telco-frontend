@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         //* next'ten sonra son kısımda çalışan event metodudur. Event'in artık comlete olduğu gösteriyor.
         this.router.navigateByUrl('/home');
         this.authService.emitOnLoginEvent(
-          `Hoşgeldiniz, ${this.loginForm.value.userName}`
+          `Hoş geldiniz, ${this.loginForm.value.userName}!`
         );
       },
     });
