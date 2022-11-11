@@ -18,14 +18,12 @@ const routes: Routes = [
    { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
    { path: 'individual-customers', component: IndividualCustomersComponent, canActivate: [LoginGuard] },
    { path: 'corporate-customers', component: CorporateCustomersComponent, canActivate: [LoginGuard] },
-   { path: 'individual-customers/details/:id', component: CustomerDetailComponent },
-   { path: 'corporate-customers/details/:id', component: CorporateCustomersDetailComponent },
-   { path: 'create-customer', component: CreateCustomerComponent },
-   { path: 'selected-catalogs', component: SelectedCatalogsComponent },
-   { path: 'new-customer', component: NewCustomerComponent }
+   { path: 'individual-customers/details/:id', component: CustomerDetailComponent, canActivate: [LoginGuard] },
+   { path: 'corporate-customers/details/:id', component: CorporateCustomersDetailComponent, canActivate: [LoginGuard] },
+   { path: 'create-customer', component: CreateCustomerComponent, canActivate: [LoginGuard] },
+   { path: 'selected-catalogs', component: SelectedCatalogsComponent, canActivate: [LoginGuard] },
+   { path: 'new-customer', component: NewCustomerComponent, canActivate: [LoginGuard] }
 ];
-
-
 
 @NgModule({
    imports: [RouterModule.forRoot(routes)],

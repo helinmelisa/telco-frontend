@@ -28,13 +28,13 @@ export class CreateCustomerComponent implements OnInit {
    corporateCustomerInfo!: CorporateCustomerInfoModel;
    individualCustomerInfo!: IndividualCustomerInfoModel;
    birthDate: Date = new Date();
-   
+
    constructor(
       private store: Store<AppStoreState>,
       private formBuilder: FormBuilder,
       private toastrService: ToastrService,
       private router: Router
-      ) {
+   ) {
       this.store.select((s) => s.customerType.customerType).subscribe(res => this.selected = res ? res : 'individual');
       this.corporateCustomerInfoModel$ = this.store.select((s) => s.corporateCustomer.corporateCustomerInfo);
       this.individualCustomerInfoModel$ = this.store.select((s) => s.individualCustomer.individualCustomerInfo);
@@ -58,8 +58,8 @@ export class CreateCustomerComponent implements OnInit {
       this.setIsCorporate();
       this.store.dispatch(setCustomerType({ customerType: event }));
    }
-   
-   setIsCorporate(){
+
+   setIsCorporate() {
       this.isCorporate = this.selected == 'corporate';
    }
 
@@ -71,37 +71,45 @@ export class CreateCustomerComponent implements OnInit {
    }
 
    createIndividualCustomerForm() {
-      const olderThanValidator = (minAge: number): ValidatorFn => control =>
-       (new Date()).getFullYear() - (new Date(control.value)).getFullYear() < minAge  ? { older: { minAge } } : null;
-   
+      const olderThanValidator = (minAge: number): ValidatorFn => control => {
+         console.log({ control });
+         return (new Date()).getFullYear() - (new Date(control.value)).getFullYear() < minAge ? { message: `Age has to be older than ${minAge}` } : null;
+      };
+
       this.individualCustomerForm = this.formBuilder.group({
          firstName: [this.individualCustomerInfo?.firstName ?? '', Validators.required],
          lastName: [this.individualCustomerInfo?.lastName ?? '', Validators.required],
-         birthDate: [this.individualCustomerInfo?.birthDate ?? '', [Validators.required, olderThanValidator(18),Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
+         birthDate: [this.individualCustomerInfo?.birthDate ?? '', [Validators.required, olderThanValidator(18), Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
       });
    }
 
    saveState() {
       if (this.selected == 'corporate') {
          if (this.corporateCustomerForm.invalid) {
-            this.toastrService.error("Please make sure to fill in the required fields!"); 
+            this.toastrService.error("Please make sure to fill in the required fields!");
          } else {
             this.store.dispatch(
                setCorporateCustomerInfoModel({ corporateCustomerInfoModel: this.corporateCustomerForm.value })
-               );
-            this.router.navigateByUrl('/selected-catalogs')
+            );
+            this.router.navigateByUrl('/selected-catalogs');
          }
       } else {
-         if(this.individualCustomerForm)
          if (this.individualCustomerForm.invalid) {
+            if (this.individualCustomerForm.invalid && !!this.individualCustomerForm.value.firstName && !!this.individualCustomerForm.value.lastName) {
+               this.toastrService.error(`Age has to be older than 18`);
+               return;
+            }
+
             this.toastrService.error("Please make sure to fill in the required fields!");
          } else {
             this.store.dispatch(
                setIndividualCustomerInfoModel({ individualCustomerInfoModel: this.individualCustomerForm.value })
             );
-            this.router.navigateByUrl('/selected-catalogs')
+            this.router.navigateByUrl('/selected-catalogs');
          }
       }
    }
 
-} 
+}
+
+// * ngIf="individualCustomerForm.get('birthDate').touched && individualCustomerForm.getError('older') as error";
