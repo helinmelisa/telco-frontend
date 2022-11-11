@@ -6,7 +6,7 @@
 <!-- logout olduğunu yakalasın -->
 <!-- Hoşçakal -->
 
-  <div [ngClass]="{'container-app': router.url !=='/login'}">
+  <div [ngClass]="router.url !=='/login' ? 'container-app': 'container-login'">
     <!-- text="Hoşgeldiniz" statik string tipinde veriler verdiğimizde kullanabiliriz. -->
     <!-- [text]="overlayTitleText" hem dinamik değişkenler için, hem de string ve diğer tipler için kullanabiliriz. -->
     <app-overlay-title [text]="overlayTitleText"></app-overlay-title>
