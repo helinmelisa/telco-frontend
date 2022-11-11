@@ -1,18 +1,32 @@
-.addition-form {
+.forms {
    display: flex;
-   justify-content: flex-end;
+   justify-content: space-around;
    align-items: center;
+   padding: 1rem;
 }
 
-.addition-form > p{
-   margin: 0;
-   margin-right: 0.45rem;
+.forms > span:first-of-type{
+   width: 50%;
 }
 
-.addition-form > input{
-   border: 1px solid #3B82F6;
-   border-radius: 2px;
+.forms input:first-of-type {
+   width: 100%;
 }
+
+.forms > form {
+   display: flex;
+   justify-content: center;
+   width: 40%;
+ }
+
+ .forms > form > input {
+   width: 70%;
+   margin: 0 0.75rem;
+ }
+
+ .forms > form > button {
+   width: 3rem;
+ }
 
 /* .inner{
     display: inline-block;

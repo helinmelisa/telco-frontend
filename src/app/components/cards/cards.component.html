@@ -1,38 +1,53 @@
-<h1>Filter By Name</h1>
-<input [(ngModel)]="searchText" type="text" placeholder="Search By Name" />
+<div class="forms">
+  <span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="searchText"
+      placeholder="Search among services"
+    />
+  </span>
 
-<form
-  *ngIf="displayAddForm"
-  class="addition-form"
-  [formGroup]="addForm"
-  (submit)="add()"
->
-  <!-- <p><strong>Add a service:</strong></p> -->
-  <input
-    formControlName="name"
-    type="text"
-    placeholder="Enter a service name"
-  />
-  <br />
-  <button
-    pButton
-    pRipple
-    type="submit"
-    icon="pi pi-check"
-    class="p-button-rounded p-button-text p-button-success mr-2"
-  ></button>
-  <button
-    pButton
-    pRipple
-    type="button"
-    icon="pi pi-times"
-    (click)="onAddCancel()"
-    class="p-button-rounded p-button-text p-button-danger"
-  ></button>
-</form>
+  <!-- <input [(ngModel)]="searchText" type="text" placeholder="Search By Name" /> -->
+
+  <form
+    *ngIf="displayAddForm"
+    class="addition-form"
+    [formGroup]="addForm"
+    (submit)="add()"
+  >
+    <input
+      formControlName="name"
+      type="text"
+      placeholder="Enter a service name"
+      pInputText
+    />
+    <br />
+    <button
+      pButton
+      pRipple
+      type="submit"
+      icon="pi pi-check"
+      class="p-button-rounded p-button-text p-button-success mr-2"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-times"
+      (click)="onAddCancel()"
+      class="p-button-rounded p-button-text p-button-danger"
+    ></button>
+  </form>
+</div>
 
 <div class="card">
-  <p-table [value]="services | filterService: searchText" dataKey="id" editMode="row">
+  <p-table
+    [value]="services | filterService: searchText"
+    dataKey="id"
+    editMode="row"
+  >
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 70%">Services</th>

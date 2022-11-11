@@ -22,6 +22,7 @@ import { FilterServicePipe } from './pipes/filter-service.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
+import { InputTextModule } from 'primeng/inputtext';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ListviewComponent } from './components/listview/listview.component';
 import { LoadingComponent } from './pages/loading/loading.component';
@@ -71,6 +72,7 @@ import { appReducers } from './store/app.reducer';
    imports: [
       TableModule,
       ButtonModule,
+      InputTextModule,
       BrowserModule,
       BrowserAnimationsModule,
       AppRoutingModule,
