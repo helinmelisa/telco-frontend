@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CardsComponent implements OnInit {
 
-   services!: Services[];
+   services: Services[] = [];
    searchText: string = '';
    addForm!: FormGroup;
    displayAddForm: boolean = false;

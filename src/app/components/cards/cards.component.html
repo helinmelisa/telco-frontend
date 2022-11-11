@@ -1,4 +1,12 @@
-<form *ngIf="displayAddForm" class='addition-form' [formGroup]="addForm" (submit)="add()">
+<h1>Filter By Name</h1>
+<input [(ngModel)]="searchText" type="text" placeholder="Search By Name" />
+
+<form
+  *ngIf="displayAddForm"
+  class="addition-form"
+  [formGroup]="addForm"
+  (submit)="add()"
+>
   <!-- <p><strong>Add a service:</strong></p> -->
   <input
     formControlName="name"
@@ -24,7 +32,7 @@
 </form>
 
 <div class="card">
-  <p-table [value]="services" dataKey="id" editMode="row">
+  <p-table [value]="services | filterService: searchText" dataKey="id" editMode="row">
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 70%">Services</th>
