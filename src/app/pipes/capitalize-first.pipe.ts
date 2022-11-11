@@ -9,7 +9,6 @@ export class CapitalizeFirstPipe implements PipeTransform {
       const words = value.split(' ');
       const capitalizatedWords = words.map(word => word.charAt(0).toLocaleUpperCase('tr-TR') + word.slice(1));
       const newValue = capitalizatedWords.join(' ');
-      console.log({ newValue });
       return newValue;
    }
 

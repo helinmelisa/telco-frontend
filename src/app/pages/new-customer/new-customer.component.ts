@@ -31,7 +31,8 @@ export class NewCustomerComponent implements OnInit {
    corporateCustomerInfoModel$!: Observable<CorporateCustomerInfoModel | null>;
    corporateCustomerInfo!: CorporateCustomerInfoModel;
    selectedCatalogs$!: Observable<Catalog[] | null>;
-   selectedCatalogs!: Catalog[];
+   selectedCatalogs: Catalog[] = [];
+   total: number = 0;
 
    constructor(
       private store: Store<AppStoreState>,
@@ -53,7 +54,16 @@ export class NewCustomerComponent implements OnInit {
       this.customerType$.subscribe(response => this.customerType = response);
       this.corporateCustomerInfoModel$.subscribe(response => this.corporateCustomerInfo = response);
       this.individualCustomerInfoModel$.subscribe(response => this.individualCustomerInfo = response);
-      this.selectedCatalogs$.subscribe(response => this.selectedCatalogs = response);
+      this.selectedCatalogs$.subscribe({
+         next: response => {
+            this.selectedCatalogs = response;
+            this.total = response ? response.reduce((a, b) => a + b.price, 0) : 0;
+         },
+         error: error => {
+            console.log(error);
+            this.toastr.error('İşlem başarısız');
+         },
+      });
    }
 
    back() {
@@ -102,7 +112,7 @@ export class NewCustomerComponent implements OnInit {
 
                this.corporateCustomerService.add(corporate).subscribe({
                   next: (corporateRes) => {
-                     console.log({corporateRes});
+                     console.log({ corporateRes });
                      this.addSubscriptionsAndInvoices(res.id, this.selectedCatalogs);
                   },
                   error: error => {
@@ -136,15 +146,13 @@ export class NewCustomerComponent implements OnInit {
          };
          this.subscriptionService.add(sub).subscribe({
             next: res => {
-               console.log({res});
                const invoice = {
                   id: Math.floor(100 + Math.random() * 9000000000),
                   subscriptionId: res.id,
                   dateCreated: res.dateStarted,
                   dateDue: "2022-07-28",
-               }
-               console.log({invoice});
-               this.invoiceService.add(invoice).subscribe(inRes => console.log({inRes}));
+               };
+               this.invoiceService.add(invoice).subscribe();
             },
             error: (err) => {
                console.log(err);
