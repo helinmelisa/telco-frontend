@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card services">
   <p-table
     [value]="services"
     dataKey="id"
@@ -8,7 +8,16 @@
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 20%">Services</th>
-        <th style="width: 20%"></th>
+        <th style="width: 10%">
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-plus"
+            (click)="add()"
+            class="p-button-rounded p-button-text p-button-success mr-2"
+          ></button>
+        </th>
       </tr>
     </ng-template>
     <ng-template
