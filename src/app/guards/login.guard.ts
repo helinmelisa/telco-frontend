@@ -29,7 +29,7 @@ export class LoginGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.authService.isAuthenticated) return true;
-    this.toastr.error('Bu sayfaya erişmek için giriş yapmalısınız.');
+    this.toastr.error('You must be logged in to access this page.');
     this.router.navigateByUrl('/login');
     return false;
   }

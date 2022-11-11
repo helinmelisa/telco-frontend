@@ -28,8 +28,7 @@ export class CorporateCustomersDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.corporateCustomersService.getCorporateCustomersDetail(+params['id'])
       .subscribe(response =>
-        {console.log(response);
-          console.log('deneme');
+        {
            this.details = response[0]
            this.customerId=this.details.customerId;
            this.getSubscriptions();
@@ -41,9 +40,6 @@ export class CorporateCustomersDetailComponent implements OnInit {
   getSubscriptions() {
     this.subscriptionService.getToSubscriptions(this.customerId).subscribe((res) => {
      this.subscription = res;
-     console.log(res);
-     console.log(this.customerId);
-     console.log('subscribe');
    })
   }
 

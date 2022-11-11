@@ -10,6 +10,4 @@ export interface AppStoreState {
   individualCustomer: IndividualCustomerState;
   selectedCatalogs: SelectedCatalogsState;
   customerType: CustomerTypeState;
-  //service: ServiceState;
-  // customerToRegister: CustomerToRegister;
 }

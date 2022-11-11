@@ -88,7 +88,7 @@ export class CreateCustomerComponent implements OnInit {
    saveState() {
       if (this.selected == 'corporate') {
          if (this.corporateCustomerForm.invalid) {
-            this.toastrService.error("Lütfen gerekli alanları doldurduğunuzdan emin olun!"); 
+            this.toastrService.error("Please make sure to fill in the required fields!"); 
          } else {
             this.store.dispatch(
                setCorporateCustomerInfoModel({ corporateCustomerInfoModel: this.corporateCustomerForm.value })
@@ -97,7 +97,7 @@ export class CreateCustomerComponent implements OnInit {
          }
       } else {
          if (this.individualCustomerForm.invalid) {
-            this.toastrService.error("Lütfen gerekli alanları doldurduğunuzdan emin olun!");
+            this.toastrService.error("Please make sure to fill in the required fields!");
          } else {
             this.store.dispatch(
                setIndividualCustomerInfoModel({ individualCustomerInfoModel: this.individualCustomerForm.value })

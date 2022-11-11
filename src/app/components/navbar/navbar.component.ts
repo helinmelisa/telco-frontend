@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
     //* Event'i emit eder/tetikler.
     this.onLogout.emit();
     //* Event'i bir veriyle emit eder/tetikler.
-    this.onLogoutWithValue.emit('Hoşçakal, tekrar bekleriz...');
+    this.onLogoutWithValue.emit('Bye, we will see you again.');
 
     this.router.navigate(['login']);
   }

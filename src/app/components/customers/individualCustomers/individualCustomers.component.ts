@@ -5,7 +5,7 @@ import { IndividualCustomersService } from 'src/app/services/individualCustomers
 
 
 @Component({
-  selector: 'individualCustomers',
+  selector: 'individual-customers',
   templateUrl: './individualCustomers.component.html',
   styleUrls: ['./individualCustomers.component.css']
 })
@@ -37,7 +37,7 @@ export class IndividualCustomersComponent implements OnInit {
   }
  
   showDetails(id: number){
-    this.router.navigate(['/individualCustomers/details',  id])
+    this.router.navigate(['/individual-customers/details',  id])
   }
 
   goToCreateCustomerPage() {

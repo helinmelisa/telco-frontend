@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
-import { CardsComponent } from './components/cards/cards.component';
+import { CardsComponent } from './components/service-list/cards.component';
 import { CorporateCustomersComponent } from './components/customers/corporate-customers/corporate-customers.component';
 import { CorporateCustomersDetailComponent } from './pages/corporate-customer-detail/corporate-customers-detail/corporate-customers-detail.component';
 import { CreateCustomerComponent } from './pages/create-customer/createcustomer.component';
@@ -24,7 +24,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { IndividualCustomersComponent } from './components/customers/individualCustomers/individualCustomers.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ListviewComponent } from './components/listview/listview.component';
 import { LoadingComponent } from './pages/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { LoginComponent } from './pages/login/login.component';
@@ -47,7 +46,6 @@ import { appReducers } from './store/app.reducer';
    declarations: [
       AppComponent,
       FilterServicePipe,
-      ListviewComponent,
       CreateFakeArrayPipe,
       SplitPipe,
       LoginComponent,

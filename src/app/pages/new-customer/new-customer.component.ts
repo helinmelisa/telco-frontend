@@ -61,7 +61,7 @@ export class NewCustomerComponent implements OnInit {
          },
          error: error => {
             console.log(error);
-            this.toastr.error('İşlem başarısız');
+            this.toastr.error('The operation could not be performed.');
          },
       });
    }
@@ -88,19 +88,18 @@ export class NewCustomerComponent implements OnInit {
 
                this.individualCustomerService.add(individiual).subscribe({
                   next: (individualRes) => {
-                     console.log('indiv', individualRes);
                      this.addSubscriptionsAndInvoices(res.id, this.selectedCatalogs);
                   },
                   error: error => {
                      console.log(error);
-                     this.toastr.error('İşlem başarısız');
+                     this.toastr.error('The operation could not be performed.');
                   },
                   complete: () => {
-                     this.toastr.success('İşlem başarılı');
+                     this.toastr.success('The new user has been successfully added.');
                      this.store.dispatch(resetCatalogs());
                      this.store.dispatch(resetCorporateCustomer());
                      this.store.dispatch(resetIndividualCustomer());
-                     this.router.navigateByUrl('/individualCustomers');
+                     this.router.navigateByUrl('/individual-customers');
                   },
                });
             } else {
@@ -112,26 +111,25 @@ export class NewCustomerComponent implements OnInit {
 
                this.corporateCustomerService.add(corporate).subscribe({
                   next: (corporateRes) => {
-                     console.log({ corporateRes });
                      this.addSubscriptionsAndInvoices(res.id, this.selectedCatalogs);
                   },
                   error: error => {
                      console.log(error);
-                     this.toastr.error('İşlem başarısız');
+                     this.toastr.error('The operation could not be performed.');
                   },
                   complete: () => {
-                     this.toastr.success('İşlem başarılı');
+                     this.toastr.success('The new user has been successfully added.');
                      this.store.dispatch(resetCatalogs());
                      this.store.dispatch(resetCorporateCustomer());
                      this.store.dispatch(resetIndividualCustomer());
-                     this.router.navigateByUrl('/corporateCustomers');
+                     this.router.navigateByUrl('/corporate-customers');
                   },
                });
             }
          },
          error: (error) => {
             console.log(error);
-            this.toastr.error('İşlem başarısız');
+            this.toastr.error('The operation could not be performed.');
          }
       });
    }
@@ -142,7 +140,7 @@ export class NewCustomerComponent implements OnInit {
             id: Math.floor(100 + Math.random() * 9000000000),
             customerId: id,
             serviceId: catalog.serviceId,
-            dateStarted: new Date().toString(),
+            dateStarted: "2022-11-11",
          };
          this.subscriptionService.add(sub).subscribe({
             next: res => {
@@ -150,13 +148,13 @@ export class NewCustomerComponent implements OnInit {
                   id: Math.floor(100 + Math.random() * 9000000000),
                   subscriptionId: res.id,
                   dateCreated: res.dateStarted,
-                  dateDue: "2022-07-28",
+                  dateDue: "2022-12-11",
                };
                this.invoiceService.add(invoice).subscribe();
             },
             error: (err) => {
                console.log(err);
-               this.toastr.error('İşlem başarısız');
+               this.toastr.error('The operation could not be performed.');
             }
          });
       });

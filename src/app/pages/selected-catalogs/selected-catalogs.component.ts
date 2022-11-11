@@ -35,14 +35,12 @@ export class SelectedCatalogsComponent implements OnInit {
    
    ngOnInit(): void {
       this.getCatalogs();
-      // this.createCatalogForm();
    }
 
    getCatalogs() {
       this.catalogService.getCatalogs().subscribe({
          next: response => this.catalogs = response,
          error: res => this.toastr.error(res),
-         // complete: () => this.createCatalogForm()
          complete: () => {
             this.selectedCatalogs$.subscribe((response) => {
                if (response != null) this.selectedCatalogs = response;
@@ -72,7 +70,7 @@ export class SelectedCatalogsComponent implements OnInit {
 
    next() {
       this.saveSelections();
-      if(this.noneHasSelected) this.toastr.error('Lüften en az bir seçim yapınız');
+      if(this.noneHasSelected) this.toastr.error('Please make at least one selection.');
       if(!this.noneHasSelected) {
          this.router.navigateByUrl('/new-customer');
       }

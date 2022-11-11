@@ -4,7 +4,7 @@ import { CorporateCustomers } from 'src/app/models/corporateCustomers';
 import { CorporateCustomersService } from 'src/app/services/corporate-customer.service';
 
 @Component({
-  selector: 'corporateCustomers',
+  selector: 'corporate-customers',
   templateUrl: './corporate-customers.component.html',
   styleUrls: ['./corporate-customers.component.css']
 })
@@ -32,7 +32,7 @@ export class CorporateCustomersComponent implements OnInit {
   }
 
   showDetails(id: number){
-    this.router.navigate(['/corporateCustomers/details',  id])
+    this.router.navigate(['/corporate-customers/details',  id])
   }
 
   goToCreateCustomerPage() {

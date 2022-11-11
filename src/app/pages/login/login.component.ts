@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     if (!this.loginForm.valid) {
-      this.toastr.error('Lütfen tüm alanları kontrol ediniz..');
+      this.toastr.error('Please check all fields.');
       return;
     }
 
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         //* next'ten sonra son kısımda çalışan event metodudur. Event'in artık comlete olduğu gösteriyor.
         this.router.navigateByUrl('/home');
         this.authService.emitOnLoginEvent(
-          `Hoş geldiniz, ${this.loginForm.value.userName}!`
+          `Welcome, ${this.loginForm.value.userName}!`
         );
       },
     });

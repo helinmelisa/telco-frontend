@@ -10,5 +10,4 @@ export const appReducers = {
    individualCustomer: individualCustomerReducer,
    selectedCatalogs: selectedCatalogsReducer,
    customerType: customerTypeReducer,
-   // customerToRegister: customerToRegisterReducer,
 };
