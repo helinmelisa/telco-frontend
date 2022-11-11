@@ -9,8 +9,6 @@
     />
   </span>
 
-  <!-- <input [(ngModel)]="searchText" type="text" placeholder="Search By Name" /> -->
-
   <form
     *ngIf="displayAddForm"
     class="addition-form"
@@ -50,8 +48,13 @@
   >
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 70%">Services</th>
-        <th style="width: 20%"></th>
+        <th style="width: 10%">
+          <div class="text-center">No</div>
+        </th>
+        <th style="width: 60%">Services</th>
+        <th style="width: 20%">
+          <div class="text-center">Edit</div>
+        </th>
         <th style="width: 10%">
           <button
             pButton
@@ -72,6 +75,11 @@
     >
       <tr [pEditableRow]="service">
         <td>
+          <div class="text-center">
+            {{ ri + 1 }}
+          </div>
+        </td>
+        <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
               <input
@@ -87,7 +95,7 @@
           </p-cellEditor>
         </td>
         <td>
-          <div class="flex align-items-center justify-content-center gap-2">
+          <div class="flex align-items-center justify-content-center text-center gap-2">
             <button
               *ngIf="!editing"
               pButton
