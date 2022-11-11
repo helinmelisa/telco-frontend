@@ -33,6 +33,9 @@
     </div>
     <div class="mb-3">
       <label for="birthDate" class="form-label">Birth Date</label>
+      <span *ngIf="individualCustomerForm.get('birthDate').touched && individualCustomerForm.getError('older') as error">
+        Too young: {{ error.minAge}}
+      </span>
       <input type="date" class="form-control" formControlName="birthDate" id="birthDate">
     </div>
     <button class="btn btn-success align-right" style="float: right;" (click)="saveState()">Next</button>

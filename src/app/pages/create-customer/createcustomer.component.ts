@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 import { AppStoreState } from 'src/app/store/app.state';
 import { CorporateCustomerInfoModel } from 'src/app/models/corporateCustomerInfoModel';
@@ -34,14 +34,7 @@ export class CreateCustomerComponent implements OnInit {
       private formBuilder: FormBuilder,
       private toastrService: ToastrService,
       private router: Router
-      // private datePipe: DatePipe,
       ) {
-      // const dateFormat = 'yyyy-MM-dd';
-      // this.birthDate = new Date();
-      // this.birthDate = datePipe.transform(
-      //    new Date().setDate(new Date().getDate() - 1),
-      //    dateFormat
-      // );
       this.store.select((s) => s.customerType.customerType).subscribe(res => this.selected = res ? res : 'individual');
       this.corporateCustomerInfoModel$ = this.store.select((s) => s.corporateCustomer.corporateCustomerInfo);
       this.individualCustomerInfoModel$ = this.store.select((s) => s.individualCustomer.individualCustomerInfo);
@@ -78,10 +71,13 @@ export class CreateCustomerComponent implements OnInit {
    }
 
    createIndividualCustomerForm() {
+      const olderThanValidator = (minAge: number): ValidatorFn => control =>
+       (new Date()).getFullYear() - (new Date(control.value)).getFullYear() < minAge  ? { older: { minAge } } : null;
+   
       this.individualCustomerForm = this.formBuilder.group({
          firstName: [this.individualCustomerInfo?.firstName ?? '', Validators.required],
          lastName: [this.individualCustomerInfo?.lastName ?? '', Validators.required],
-         birthDate: [this.individualCustomerInfo?.birthDate ?? '', [Validators.required]],
+         birthDate: [this.individualCustomerInfo?.birthDate ?? '', [Validators.required, olderThanValidator(18),Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
       });
    }
 
@@ -96,6 +92,7 @@ export class CreateCustomerComponent implements OnInit {
             this.router.navigateByUrl('/selected-catalogs')
          }
       } else {
+         if(this.individualCustomerForm)
          if (this.individualCustomerForm.invalid) {
             this.toastrService.error("Please make sure to fill in the required fields!");
          } else {
