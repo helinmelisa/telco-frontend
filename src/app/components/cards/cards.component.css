@@ -2,3 +2,19 @@
     display: inline-block;
     margin-left: 10px;
 }
+
+.addition-form {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+.addition-form > p{
+   margin: 0;
+   margin-right: 0.45rem;
+}
+
+.addition-form > input{
+   border: 1px solid #3B82F6;
+   border-radius: 2px;
+}

@@ -1,19 +1,41 @@
-<div class="card services">
-  <p-table
-    [value]="services"
-    dataKey="id"
-    editMode="row"
-  >
+<form *ngIf="displayAddForm" class='addition-form' [formGroup]="addForm" (submit)="add()">
+  <!-- <p><strong>Add a service:</strong></p> -->
+  <input
+    formControlName="name"
+    type="text"
+    placeholder="Enter a service name"
+  />
+  <br />
+  <button
+    pButton
+    pRipple
+    type="submit"
+    icon="pi pi-check"
+    class="p-button-rounded p-button-text p-button-success mr-2"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-times"
+    (click)="onAddCancel()"
+    class="p-button-rounded p-button-text p-button-danger"
+  ></button>
+</form>
+
+<div class="card">
+  <p-table [value]="services" dataKey="id" editMode="row">
     <ng-template pTemplate="header">
       <tr>
-        <th style="width:90%">Services</th>
-        <th style="width:10%">
+        <th style="width: 70%">Services</th>
+        <th style="width: 20%"></th>
+        <th style="width: 10%">
           <button
             pButton
             pRipple
             type="button"
             icon="pi pi-plus"
-            (click)="add()"
+            (click)="onAdd()"
             class="p-button-rounded p-button-text p-button-success mr-2"
           ></button>
         </th>
@@ -71,6 +93,18 @@
               pCancelEditableRow
               icon="pi pi-times"
               (click)="onRowEditCancel(service, ri)"
+              class="p-button-rounded p-button-text p-button-danger"
+            ></button>
+          </div>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center">
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-trash"
+              (click)="delete(service)"
               class="p-button-rounded p-button-text p-button-danger"
             ></button>
           </div>
