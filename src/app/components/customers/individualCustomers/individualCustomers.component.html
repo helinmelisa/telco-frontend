@@ -61,7 +61,7 @@
               class="bi bi-person-bounding-box heading"
               style="font-size: 1.5rem"
             ></i>
-            <h2 class="card-title">{{ item.firstName }} {{ item.lastName }}</h2>
+            <h2 class="card-title">{{ item.firstName | capitalizeFirst}} {{ item.lastName | capitalizeFirst}}</h2>
             <p class="card-text">
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
